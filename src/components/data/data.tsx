@@ -1,6 +1,4 @@
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
 import home from './../../assets/img/home.png';
 import projects from './../../assets/img/project.png';
 import idea from './../../assets/img/idea.png';

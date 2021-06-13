@@ -1,0 +1,11 @@
+.carousel {
+    height:300px;
+    margin-left:25px;
+    
+    }
+    .captions{
+      margin-left: 100px;
+        position: absolute;
+      left:10px;
+      z-index: 100;
+}

@@ -76,12 +76,7 @@ background:'rgba(255,160,0,0.3)',
       }
 }));
 
-interface Explore {
-  id?:number;
-  name:string;
-  image?:string;
-  applyLink:string;
-}
+
 const ExploreCourses:React.FC=()=> {
   const classes = useStyles();
 

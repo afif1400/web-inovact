@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
 
 import {Card,Container,CardMedia,CardContent,CardActions,Avatar,
-  Typography,Box,Button, CardActionArea,Chip,Link,Divider,Grid} from '@material-ui/core';
+  Typography,Box,Button, CardActionArea,Chip,Divider,Grid} from '@material-ui/core';
 import {webinarDetails} from './../data/data';
 
 const faces = [

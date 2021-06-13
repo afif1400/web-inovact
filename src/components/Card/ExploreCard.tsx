@@ -1,11 +1,8 @@
 import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
-import clsx from 'clsx';
-import {Card,CardHeader,CardMedia,CardContent,CardActions,Collapse,Avatar,IconButton,
-  Typography,Box,Button,Container, CardActionArea,Paper,Chip,Link,Divider,Grid} from '@material-ui/core';
+import {Card,CardMedia,CardContent,CardActions,Avatar,
+  Typography,Box,Button,Container, CardActionArea,Divider,Grid} from '@material-ui/core';
   import {exploreDetails} from './../data/data';
-import AvatarGroup from '@material-ui/lab/AvatarGroup';
-import image from './../../assets/img/avatar.png';
 
 const faces = [
   "http://i.pravatar.cc/300?img=1",
@@ -87,7 +84,7 @@ interface Explore {
 }
 const ExploreCourses:React.FC=()=> {
   const classes = useStyles();
-  const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
+
   return (
     <Container className={classes.root}>
 <Grid

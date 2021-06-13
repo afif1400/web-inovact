@@ -1,6 +1,6 @@
 import React from 'react';
 import RenderExploreCard from './Card/ExploreCard';
-import {Grid,Typography,Box,Container} from '@material-ui/core';
+import {Typography,Box} from '@material-ui/core';
 
 
 

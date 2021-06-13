@@ -1,4 +1,4 @@
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+
 import home from './../../assets/img/home.png';
 import projects from './../../assets/img/project.png';
 import idea from './../../assets/img/idea.png';
@@ -27,14 +27,6 @@ interface ProjectCards{
    isComplete:boolean;
  };
  interface IdeaCards{
-   id?:number;
-   title:string;
-   name:string;
-   image?:string;
-   description:string;
-   isComplete:boolean;
- };
- interface TeamCards{
    id?:number;
    title:string;
    name:string;

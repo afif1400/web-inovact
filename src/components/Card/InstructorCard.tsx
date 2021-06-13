@@ -1,12 +1,11 @@
 import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
-import clsx from 'clsx';
-import {Card,Container,CardMedia,CardContent,CardActions,Collapse,Avatar,IconButton,
-  Typography,Box,Button, CardActionArea,Paper,Chip,Grid} from '@material-ui/core';
+import {Card,Container,CardContent,
+  Typography,Box,Button, CardActionArea,Grid} from '@material-ui/core';
 
 import {instructorDetails} from './../data/data';
 
-import image from './../../assets/img/avatar.png';
+
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -86,7 +85,7 @@ const RenderMentorCard:React.FC =()=> {
                 <Card className={classes.card}> 
                 <CardActionArea>
               <div className={classes.circle}>
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" className={classes.cover} />
+                <img alt="person" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" className={classes.cover} />
               </div>
                     <CardContent className={classes.cardcontent}>
                      <Box  className={classes.CHcontent} >

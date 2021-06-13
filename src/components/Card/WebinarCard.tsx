@@ -1,12 +1,9 @@
 import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
-import clsx from 'clsx';
-import {Card,Container,CardMedia,CardContent,CardActions,Collapse,Avatar,IconButton,
-  Typography,Box,Button, CardActionArea,Paper,Chip,Link,Divider,Grid} from '@material-ui/core';
-import {webinarDetails} from './../data/data';
 
-import AvatarGroup from '@material-ui/lab/AvatarGroup';
-import image from './../../assets/img/avatar.png';
+import {Card,Container,CardMedia,CardContent,CardActions,Avatar,
+  Typography,Box,Button, CardActionArea,Chip,Link,Divider,Grid} from '@material-ui/core';
+import {webinarDetails} from './../data/data';
 
 const faces = [
   "http://i.pravatar.cc/300?img=1",
@@ -84,7 +81,6 @@ const useStyles = makeStyles((theme) =>
 
 const RenderMentorCard:React.FC =()=> {
   const classes = useStyles();
-  const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
   return (
 <Container className={classes.root}>
     <Grid

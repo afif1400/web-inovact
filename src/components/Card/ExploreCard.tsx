@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme) =>
     marginTop:20,
     marginLeft:0,
     borderRadius:'15px',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft:20,
+    },
   },
   cardcontent:{
     padding:'10px',

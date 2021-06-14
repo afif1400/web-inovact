@@ -36,7 +36,9 @@ const useStyles = makeStyles((theme) =>
     marginLeft:0,
     borderRadius:'15px',
     backgroundColor:'rgba(255,255,255,0.3)',
-   
+    [theme.breakpoints.down('sm')]: {
+      marginLeft:20,
+    },
   },
   cardcontent:{
     padding:'5px',

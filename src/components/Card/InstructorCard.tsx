@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) =>
       borderRadius:'15px',
       marginBottom:'20px',
       boxShadow: "0 3px 10px -12px rgba(0,0,0,0.9)",
+      [theme.breakpoints.down('sm')]: {
+        marginLeft:10,
+      },
     },
   root: {
    padding:0,

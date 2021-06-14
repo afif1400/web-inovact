@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
 
-import {Card,Container,CardMedia,CardContent,CardActions,Avatar,
-  Typography,Box,Button, CardActionArea,Chip,Divider,Grid} from '@material-ui/core';
+import {Card,CardMedia,CardContent,CardActions,Avatar,
+  Typography,Box,Button, CardActionArea,Chip,Divider} from '@material-ui/core';
 import {webinarDetails} from './../data/data';
 
 

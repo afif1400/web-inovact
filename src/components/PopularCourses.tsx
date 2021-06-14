@@ -1,6 +1,6 @@
 import React from 'react';
 import RenderWebinarCard from './Card/WebinarCard';
-import {Typography,Box,Container} from '@material-ui/core';
+import {Typography,Box} from '@material-ui/core';
 export default function PopularCourses() {
     return (
         <div>

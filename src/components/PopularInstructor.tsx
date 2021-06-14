@@ -14,7 +14,9 @@ export default function PopularInstructor() {
                    
                 </Box>
             </Box>
-            <RenderInstructorCard />
+           
+                 <RenderInstructorCard />
+           
         </div>
     )
 }

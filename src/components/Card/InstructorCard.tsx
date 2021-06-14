@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
 import {Card,CardContent,
-  Typography,Box,Button, CardActionArea} from '@material-ui/core';
+  Typography,Box,Button, CardActionArea,Container} from '@material-ui/core';
 
 import {instructorDetails} from './../data/data';
 
@@ -12,14 +12,15 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     card:{
       maxWidth: 200,
-      marginLeft:40,
+      marginLeft:20,
       marginTop:30,
       borderRadius:'15px',
       marginBottom:'20px',
-      boxShadow: "0 3px 20px -12px rgba(0,0,0,0.9)",
+      boxShadow: "0 3px 10px -12px rgba(0,0,0,0.9)",
     },
   root: {
    padding:0,
+  
   },
   cardcontent:{
     padding:'5px',
@@ -43,11 +44,12 @@ const useStyles = makeStyles((theme) =>
     height:'120px',
     position: 'absolute',
     bottom:" -18px",
-    right: '20%',
+    right: '25%',
     borderRadius: '50%',
     borderStyle: 'solid',
     borderColor:' white',
     borderWidth: '5px',
+    
   },
   CHcontent:{
     display:'flex',
@@ -90,8 +92,8 @@ const responsive = {
 const RenderMentorCard:React.FC =()=> {
   const classes = useStyles();
   return (
-   
-    <Carousel
+   <Container className={classes.root}>
+ <Carousel
     additionalTransfrom={0}
     arrows={false}
     centerMode={false}
@@ -99,7 +101,7 @@ const RenderMentorCard:React.FC =()=> {
     draggable
     infinite={true}
     autoPlay={true}
-    autoPlaySpeed={5000}
+    autoPlaySpeed={4000}
     focusOnSelect={false}
     keyBoardControl
     minimumTouchDrag={80}
@@ -121,7 +123,7 @@ const RenderMentorCard:React.FC =()=> {
                      <Box  className={classes.CHcontent} >
                           <Typography className={classes.name}>{card.name}</Typography>
                           <Typography className={classes.name} color="textSecondary">{card.mentored} Mentored</Typography>
-                          <Button variant="outlined" size="small" color="secondary" className={classes.button}>Go to Profile</Button> 
+                          <Button variant="outlined" size="small" color="secondary" className={classes.button}>Know More</Button> 
                      </Box>
                    </CardContent>  
                 </CardActionArea>
@@ -130,6 +132,8 @@ const RenderMentorCard:React.FC =()=> {
     })}
 
 </Carousel>
+   </Container>
+   
   );
 }
 

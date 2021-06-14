@@ -52,9 +52,9 @@ const useStyles = makeStyles((theme) =>
   card:{
     maxWidth: 300,
     backgroundColor:'rgba(255,255,255,0.3)',
-    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    boxShadow: "0 8px 10px -12px rgba(0,0,0,0.3)",
     marginTop:20,
-    marginLeft:40,
+    marginLeft:0,
     borderRadius:'15px',
   },
   cardcontent:{
@@ -138,7 +138,7 @@ const ExploreCourses:React.FC=()=> {
     draggable
     infinite={true}
     autoPlay={true}
-    autoPlaySpeed={5000}
+    autoPlaySpeed={4000}
     focusOnSelect={false}
     keyBoardControl
     minimumTouchDrag={80}

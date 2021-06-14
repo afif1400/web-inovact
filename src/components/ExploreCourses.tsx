@@ -1,6 +1,6 @@
 import React from 'react';
 import RenderExploreCard from './Card/ExploreCard';
-import {Typography,Box} from '@material-ui/core';
+import {Typography,Box,Container} from '@material-ui/core';
 
 
 
@@ -15,7 +15,10 @@ export default function ExploreCourses() {
                                     
                                 </Box>
                             </Box>
-            <RenderExploreCard />
+                           <Container>
+                                 <RenderExploreCard />
+                           </Container>
+           
 </div>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
 
 import {Card,CardMedia,CardContent,CardActions,Avatar,
-  Typography,Box,Button, CardActionArea,Chip,Divider} from '@material-ui/core';
+  Typography,Box,Button, CardActionArea,Chip,Divider,Container} from '@material-ui/core';
 import {webinarDetails} from './../data/data';
 
 
@@ -31,11 +31,12 @@ const useStyles = makeStyles((theme) =>
   },
   card:{
     maxWidth: 300,
-    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-    marginTop:10,
-    marginLeft:40,
+    boxShadow: "0 8px 10px -12px rgba(0,0,0,0.3)",
+    marginTop:20,
+    marginLeft:0,
     borderRadius:'15px',
-    backgroundColor:'rgba(255,255,255,0.3)'
+    backgroundColor:'rgba(255,255,255,0.3)',
+   
   },
   cardcontent:{
     padding:'5px',
@@ -131,8 +132,8 @@ const responsive = {
 const RenderMentorCard:React.FC =()=> {
   const classes = useStyles();
   return (
-   
-    <Carousel
+   <Container>
+<Carousel
     additionalTransfrom={0}
     arrows={false}
     centerMode={false}
@@ -140,7 +141,7 @@ const RenderMentorCard:React.FC =()=> {
     draggable
     infinite={true}
     autoPlay={true}
-    autoPlaySpeed={5000}
+    autoPlaySpeed={4000}
     focusOnSelect={false}
     keyBoardControl
     minimumTouchDrag={80}
@@ -196,6 +197,8 @@ const RenderMentorCard:React.FC =()=> {
       })}
 
       </Carousel>
+   </Container>
+    
 
   );
 }

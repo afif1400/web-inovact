@@ -12,11 +12,8 @@ export default function PopularCourses() {
                 </Box>
             
             </Box>
-<Box>
+
     <RenderWebinarCard />
-</Box>
-    
-  
 </div>
     )
 }

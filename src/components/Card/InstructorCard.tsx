@@ -1,26 +1,22 @@
 import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
-import {Card,Container,CardContent,
-  Typography,Box,Button, CardActionArea,Grid} from '@material-ui/core';
+import {Card,CardContent,
+  Typography,Box,Button, CardActionArea} from '@material-ui/core';
 
 import {instructorDetails} from './../data/data';
 
-
+import Carousel from 'react-multi-carousel';
+import "react-multi-carousel/lib/styles.css";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     card:{
       maxWidth: 200,
-      marginLeft:50,
+      marginLeft:40,
       marginTop:30,
       borderRadius:'15px',
       marginBottom:'20px',
-      boxShadow: "0 8px 40px -12px rgba(0,0,0,0.9)",
-      "&:first-of-type": {
-        marginLeft: "-40px",
-       
-      }
-
+      boxShadow: "0 3px 20px -12px rgba(0,0,0,0.9)",
     },
   root: {
    padding:0,
@@ -69,17 +65,51 @@ const useStyles = makeStyles((theme) =>
 }));
 
 
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1619 },
+    items: 6,
+    slidesToSlide: 4, 
+  },
+  laptop: {
+    breakpoint: { max: 1619, min: 1024 },
+    items: 6,
+    slidesToSlide: 3, 
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 640 },
+    items: 4,
+    slidesToSlide: 2, 
+  },
+  mobile: {
+    breakpoint: { max: 639, min: 0 },
+    items: 2,
+    slidesToSlide: 1, 
+  },
+};
 const RenderMentorCard:React.FC =()=> {
   const classes = useStyles();
   return (
-    <Container className={classes.root}>
-    <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        spacing={3}
-        >
+   
+    <Carousel
+    additionalTransfrom={0}
+    arrows={false}
+    centerMode={false}
+    containerClass="carousel-container"
+    draggable
+    infinite={true}
+    autoPlay={true}
+    autoPlaySpeed={5000}
+    focusOnSelect={false}
+    keyBoardControl
+    minimumTouchDrag={80}
+    renderButtonGroupOutside
+    renderDotsOutside={false}
+    responsive={responsive}
+    showDots={false}
+    slidesToSlide={1}
+     >
+        
             {instructorDetails.map((card)=> {
               return(
                 <Card className={classes.card}> 
@@ -99,9 +129,7 @@ const RenderMentorCard:React.FC =()=> {
       );
     })}
 
-</Grid>
-    </Container>
-  
+</Carousel>
   );
 }
 

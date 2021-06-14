@@ -1,9 +1,12 @@
 import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
 import {Card,CardMedia,CardContent,CardActions,Avatar,
-  Typography,Box,Button,Container, CardActionArea,Divider,Grid} from '@material-ui/core';
+  Typography,Box,Button, CardActionArea,Divider} from '@material-ui/core';
   import {exploreDetails} from './../data/data';
+  import Carousel from 'react-multi-carousel';
+  import "react-multi-carousel/lib/styles.css";
 
+  
 const faces = [
   "http://i.pravatar.cc/300?img=1",
   "http://i.pravatar.cc/300?img=2",
@@ -15,6 +18,29 @@ const useStyles = makeStyles((theme) =>
   createStyles({
   root: {
     padding:0,
+  },
+  carouselWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    mt: '35px',
+    px: '15px',
+   
+    '.carousel-container': {
+      width: '100%',
+      maxWidth: '100%',
+      marginRight:'40px',
+      '.react-multi-carousel-item': {
+        transition: 'all 0.25s',
+      },
+      '.react-multi-carousel-item--active:nth-of-type(4n)': {
+        opacity: '0.5',
+        '@media screen and (max-width: 1200px)': {
+          opacity: 1,
+        },
+      },
+    },
   },
   avatar: {
     display: "inline-block",
@@ -28,7 +54,7 @@ const useStyles = makeStyles((theme) =>
     backgroundColor:'rgba(255,255,255,0.3)',
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     marginTop:20,
-    marginLeft:20,
+    marginLeft:40,
     borderRadius:'15px',
   },
   cardcontent:{
@@ -77,18 +103,52 @@ background:'rgba(255,160,0,0.3)',
 }));
 
 
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1619 },
+    items: 4,
+    slidesToSlide: 4, 
+  },
+  laptop: {
+    breakpoint: { max: 1619, min: 1024 },
+    items: 4,
+    slidesToSlide: 3, 
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 640 },
+    items: 4,
+    slidesToSlide: 2, 
+  },
+  mobile: {
+    breakpoint: { max: 639, min: 0 },
+    items: 1,
+    slidesToSlide: 1, 
+  },
+};
 const ExploreCourses:React.FC=()=> {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root}>
-<Grid
-    container
-    direction="row"
-    justify="center"
-    alignItems="center"
-    spacing={3}
-    >
+   
+  <Carousel
+    additionalTransfrom={0}
+    arrows={false}
+    centerMode={false}
+    containerClass="carousel-container"
+    draggable
+    infinite={true}
+    autoPlay={true}
+    autoPlaySpeed={5000}
+    focusOnSelect={false}
+    keyBoardControl
+    minimumTouchDrag={80}
+    renderButtonGroupOutside
+    renderDotsOutside={false}
+    responsive={responsive}
+    showDots={false}
+    slidesToSlide={1}
+     >
+        
         {exploreDetails.map((card)=> {
            return(
             <Card className={classes.card}> 
@@ -124,9 +184,7 @@ const ExploreCourses:React.FC=()=> {
            
             
 })}
-</Grid>   
-
-    </Container>
+</Carousel>   
   );
 }
 

@@ -1,7 +1,12 @@
 import React from "react";
-
+import MainComponent from './components/MainComponent'
 const App = () => {
-	return <div>This is the react app;</div>;
+	return (
+		<div>
+			<MainComponent />
+		</div>
+	);
+	    
 };
 
 export default App;

@@ -1,1 +1,0 @@
-module.exports = require('./src/function/ping.js')

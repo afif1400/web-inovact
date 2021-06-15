@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../function/ping.ts"],
-  "sourceRoot": "/home/afif/Documents/Development/Web Development/react/web-inovact/.netlify/functions-serve",
-  "sourcesContent": ["import { Handler } from \"@netlify/functions\";\n\nconst handler: Handler = () => {\n\treturn {\n\t\tstatusCode: 200,\n\t\tbody: JSON.stringify(\"pong\"),\n\t};\n};\n\nexport { handler };\n"],
-  "mappings": ";;;;;;;;AAAA;AAAA;AAAA;AAAA;AAEA,IAAM,UAAmB,MAAM;AAC9B,SAAO;AAAA,IACN,YAAY;AAAA,IACZ,MAAM,KAAK,UAAU;AAAA;AAAA;",
-  "names": []
-}

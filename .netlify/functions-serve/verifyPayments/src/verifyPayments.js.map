@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../function/verifyPayments.ts"],
+  "sourceRoot": "/home/afif/Documents/Development/Web Development/react/web-inovact/.netlify/functions-serve",
+  "sourcesContent": ["import { Handler, HandlerEvent } from \"@netlify/functions\";\nimport crypto from \"crypto\";\n\nconst handler: Handler = (event: HandlerEvent) => {\n\t// do a validation\n\n\tconst SECRET = \"inovact\";\n\n\tconst shasum = crypto.createHmac(\"sha256\", SECRET);\n\tshasum.update(event.body);\n\tconst digest = shasum.digest(\"hex\");\n\n\tif (digest === event.headers[\"x-razorpay-signature\"]) {\n\t\tconsole.log(\"request is legit\");\n\t}\n\n\treturn {\n\t\tstatusCode: 200,\n\t\tbody: JSON.stringify({ status: \"ok\" }),\n\t};\n};\n\nexport { handler };\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AACA,oBAAmB;AAEnB,IAAM,UAAmB,CAAC,UAAwB;AAGjD,QAAM,SAAS;AAEf,QAAM,SAAS,sBAAO,WAAW,UAAU;AAC3C,SAAO,OAAO,MAAM;AACpB,QAAM,SAAS,OAAO,OAAO;AAE7B,MAAI,WAAW,MAAM,QAAQ,yBAAyB;AACrD,YAAQ,IAAI;AAAA;AAGb,SAAO;AAAA,IACN,YAAY;AAAA,IACZ,MAAM,KAAK,UAAU,CAAE,QAAQ;AAAA;AAAA;",
+  "names": []
+}

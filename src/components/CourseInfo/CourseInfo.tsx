@@ -146,13 +146,13 @@ export default function CourseInfo() {
                             <Typography variant="body2" gutterBottom>{courseDetails.instructor}</Typography>
                            
                         </Grid>
-                        <Grid item xs className={classes.grid}>
-                        <Typography gutterBottom variant="h6">
+                        <Grid item xs className={classes.grid} style={{paddingLeft:'40px'}}>
+                        <Typography gutterBottom variant="h6" >
                            Catergory
                         </Typography>
                         <Typography gutterBottom variant="body2" >{courseDetails.category}</Typography>
                         </Grid>
-                        <Grid item xs >
+                        <Grid item xs style={{paddingLeft:'40px'}} >
                         <Typography gutterBottom variant="h6">
                            Price
                         </Typography>

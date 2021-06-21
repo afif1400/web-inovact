@@ -3,7 +3,7 @@ import RenderWebinarCard from './Card/CourseCard';
 import {Typography,Box,Container} from '@material-ui/core';
 export default function PopularCourses() {
     return (
-     <Box style={{backgroundColor:'rgba(196, 175, 224,0.5)',marginTop:'40px',padding:'40px',width:'100%', paddingBottom:'100px'}}>
+     <Box style={{backgroundColor:'rgba(247,245,244,0.5)',marginTop:'40px',padding:'40px',width:'100%', paddingBottom:'100px'}}>
 
           
                 <Box style={{display:"flex",justifyContent:"space-between"}}>

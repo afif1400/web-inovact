@@ -64,7 +64,7 @@ const PaymentRoute = () => {
 
 	return (
 		<div>
-				<Button variant="contained" size="large" onClick={() => displayRazorpay()} color="primary">Register Now</Button>
+				<Button variant="contained" size="medium" onClick={() => displayRazorpay()} color="primary">Register Now</Button>
 		</div>
 	);
 };

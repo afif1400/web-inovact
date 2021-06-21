@@ -1,8 +1,8 @@
 import React,{ useState } from 'react';
 import{ Box ,Typography,Button} from '@material-ui/core';
 
-import Rating from './Rating/Rating';
-import {carouselDetails} from './../data/data';
+import Rating from '../Rating/Rating';
+import {carouselDetails} from '../../data/data';
 
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';

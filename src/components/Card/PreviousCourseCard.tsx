@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
-
+import Rating from './../Elements/Rating/Rating';
 import {Card,CardMedia,CardContent,CardActions,Avatar,
   Typography,Box,Button, CardActionArea,Chip,Divider,Container} from '@material-ui/core';
 import {webinarDetails} from './../data/data';
@@ -9,12 +9,25 @@ import {webinarDetails} from './../data/data';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 
-const faces = [
-  "http://i.pravatar.cc/300?img=1",
-  "http://i.pravatar.cc/300?img=2",
-  "http://i.pravatar.cc/300?img=3",
-  "http://i.pravatar.cc/300?img=4"
+
+
+const colors = [
+  ['red'],
+['#ffa500'],
+['green'],
 ];
+const beginner={
+  color: `${colors[2]}`,
+  borderColor:`${colors[2]}`
+}
+const intermediate={
+  color: `${colors[1]}`,
+  borderColor:`${colors[1]}`
+}
+const advance={
+  color: `${colors[0]}`,
+  borderColor:`${colors[0]}`
+}
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,12 +43,12 @@ const useStyles = makeStyles((theme) =>
     }
   },
   card:{
-    maxWidth: 300,
+    maxWidth: 500,
     boxShadow: "0 8px 10px -12px rgba(0,0,0,0.3)",
     marginTop:20,
-    marginLeft:0,
+    marginLeft:20,
     borderRadius:'15px',
-    backgroundColor:'rgba(255,255,255,0.3)',
+   // backgroundColor:'rgba(255,255,255,0.3)',
     [theme.breakpoints.down('sm')]: {
       marginLeft:20,
     },
@@ -55,17 +68,12 @@ const useStyles = makeStyles((theme) =>
    
   },
   carouselWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    mt: '35px',
-    px: '15px',
-   
+  
     '.carousel-container': {
       width: '100%',
       maxWidth: '100%',
-      marginRight:'40px',
+      marginRight:'10px',
+     
       '.react-multi-carousel-item': {
         transition: 'all 0.25s',
       },
@@ -77,6 +85,9 @@ const useStyles = makeStyles((theme) =>
       },
     },
   },
+  instructor:{
+marginLeft:'10px',
+  },
   CHcontent:{
     display:'flex',
     flexDirection:'row',
@@ -85,23 +96,38 @@ const useStyles = makeStyles((theme) =>
     margin:0,
     marginBottom:5,
   },
-  button:{
+  learn:{
+    display:'block',
+    color:'#020652',
+    padding:'5px',
     marginLeft:'40px',
-      },
+    width:'100%',
+    paddingX:'10px',
+      '&:hover':{
+        backgroundColor:'#020652',
+        color:'#FFA500',
+        border:'1px solid transparent',  
+        borderRadius:'5px',
+      }
+    },
       price:{
       color:'green',
       fontWeight:550,
       },
       avatars:{
-
+        display:'flex',
+        flexDirection:'row',
       },
       level:{
         background:'rgba(255,160,0,0.3)',
-
       },
       footer:{
-        padding:'5px',
-  
+        padding:'10px',
+        paddingBottom:'0px',
+        justifyContent:'left',
+        alignItems:'left',
+        display:'flex',
+        flexDirection:'row',
       },
       divider:{
 
@@ -111,17 +137,17 @@ const useStyles = makeStyles((theme) =>
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1619 },
-    items: 4,
+    items: 3,
     slidesToSlide: 4, 
   },
   laptop: {
     breakpoint: { max: 1619, min: 1024 },
-    items: 4,
+    items: 3,
     slidesToSlide: 3, 
   },
   tablet: {
     breakpoint: { max: 1024, min: 640 },
-    items: 4,
+    items: 3,
     slidesToSlide: 2, 
   },
   mobile: {
@@ -134,7 +160,7 @@ const responsive = {
 const RenderMentorCard:React.FC =()=> {
   const classes = useStyles();
   return (
-   <Container>
+
 <Carousel
     additionalTransfrom={0}
     arrows={false}
@@ -155,7 +181,7 @@ const RenderMentorCard:React.FC =()=> {
      >
           {webinarDetails.map((card)=> {
               return(
-                <Card className={classes.card}> 
+            <Card className={classes.card}> 
               <CardActionArea>
                 <CardMedia
                                 component="img"
@@ -166,40 +192,54 @@ const RenderMentorCard:React.FC =()=> {
                                 /> 
           
                 <CardContent className={classes.cardcontent}>
-                      <Box className={classes.CHcontent} >
-                      <Chip
-                        size="small"
-                        label={card.level}
-                        clickable
-                        color="secondary"
-                        variant="outlined"
-                        
-                       
-                       />
-                          <Typography gutterBottom variant="h6" component="h4" className={classes.price}><span>&#36;</span>{card.price}</Typography>
+                      <Box className={classes.CHcontent}  >
+                      {(() => {
+        switch (card.level) {
+          case 'beginner':
+            return  <Chip size="small" label={card.level} clickable style={beginner}  variant="outlined"  />;
+           
+          case 'intermediate':
+            return  <Chip size="small" label={card.level} clickable style={intermediate}  variant="outlined"  />;
+            
+          case 'advance':
+            return  <Chip size="small" label={card.level} clickable style={advance}  variant="outlined"  />;
+            
+          default:
+            return null;
+        }
+      })()}
+                     
+                      
+                          <Typography gutterBottom variant="h6" component="h4" className={classes.price}><span>&#8377;</span>{card.price}</Typography>
                     </Box>
                     <Box>
                         <Typography gutterBottom variant="h5" component="h2" className={classes.name} >{card.name}</Typography>
                     </Box>
                 </CardContent>  
             </CardActionArea>
+          
           <CardActions className={classes.footer}>
-              <Divider className={classes.divider} light />
+  
                 <Box className={classes.avatars}>
-                    {faces.map(face => (
-                        <Avatar className={classes.avatar} key={face} src={face} />
-                      ))}
+                    <Box>
+                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    </Box>
+
+                    <Box className={classes.instructor}>
+                        <Typography variant="h6">Jane Doe</Typography>
+                        <Rating rating={4} />
+                    </Box>
                 </Box>
+                
                 <Box>
-                      <Button size="small" className={classes.button} href="#" >Learn more</Button>
+                <Button className={classes.learn}>Learn More </Button>
                 </Box>
           </CardActions>
           </Card>
         );
       })}
-
-      </Carousel>
-   </Container>
+</Carousel>
+  
     
 
   );

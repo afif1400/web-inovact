@@ -1,66 +1,28 @@
-
-import home from './../../assets/img/home.png';
-import projects from './../../assets/img/project.png';
-import idea from './../../assets/img/idea.png';
-import team from './../../assets/img/users.svg';
-import avatar from './../../assets/img/avatar.png';
-
-interface MenuList {
-   text:string;
-   icon:any;
-   index:number;
-   path:string;
-}
-interface TeamMenu {
-   index:number;
-   teamname:string;
-   designation:string;
-   icon:any;
-   path:string;
-}
-interface ProjectCards{
-   id?:number;
-   title:string;
-   name:string;
-   image?:string;
-   description:string;
-   isComplete:boolean;
- };
- interface IdeaCards{
-   id?:number;
-   title:string;
-   name:string;
-   image?:string;
-   description:string;
-   isComplete:boolean;
- };
- interface MentorCard {
-    id?:number;
-    name:string;
-    projects?:number;
-   image?:string;
-    mentored:number;
- }
 interface Carousel {
    title:string;
    rating:number;
    description:string;
    url:string;
 }
- interface InstructorCard {
-   id?:number;
-   name:string;
-   projects?:number;
-  image?:string;
-   mentored:number;
+interface InstructorCard {
+      id:number;
+      name:string;
+      designation?:string;
+      description?:string;
+      projects:number;
+      mentored:number;
+      image:string;
+      ref:string;
 }
- interface WebinarCard {
+interface WebinarCard {
    id?:number;
    name:string;
    level:string;
    image?:string;
    price:number;
    applyLink:string;
+   date:string;
+   time:string;
 }
 interface Explore {
    id?:number;
@@ -68,26 +30,79 @@ interface Explore {
    image?:string;
    applyLink:string;
 }
- interface ProfileCard {
-    id:number;
-    name:string;
-    email:string;
-    ph:number;
-    image:string;
-    projects:number;
-    followers:number;
-    following:number;
- }
- interface myProfileProject {
+interface Review{
    id:number;
+   courseId:number;
    name:string;
-   description1:string;
-   description2:string;
-   image:string;
-   projects:number;
-   followers:number;
-   following:number;
+   rating:number;
+   reviewTitle?:string;
+   review:string;
+};
+interface CourseDetails {
+   id:number;
+   title:string;
+   date:string;
+   duration:number;
+   enrolled:number;
+   time:string;
+   instructor:string;
+   price:number;
+   category:string;
+   link:string;
+   image?:string;
+   description?:string;
+   outcomes?:Outcome[]; 
+
 }
+interface Curriculum{
+   id:number;
+   courseId:number;
+   lesson:string; 
+   duration:number
+}
+interface Outcome {
+   outcome:string;
+}
+export const curriculumDetails: Curriculum[]=[
+   {
+      id:0,
+      courseId:0,
+      lesson:"Introduction",
+      duration:10,
+   },
+   {
+      id:0,
+      courseId:0,
+      lesson:"Introduction",
+      duration:10,
+   },
+   {
+      id:0,
+      courseId:0,
+      lesson:"Introduction",
+      duration:3,
+   },
+]
+export const reviewDetails: Review[]=[
+   {
+      id:0,
+      courseId:0,
+      name:"Jone Assten",
+      rating:4,
+      reviewTitle:'Very Thorough',
+      review:" The course identify things we want to change and then figure out the things that need to be done to create the desired outcome. The course helped me in clearly define problems and generate a wider variety of quality solutions. Support more structures analysis of options leading to better decisions."
+   },
+   {
+      id:0,
+      courseId:0,
+      name:"Jone Assten",
+      rating:4,
+      reviewTitle:'Very Thorough',
+      review:" The course identify things we want to change and then figure out the things that need to be done to create the desired outcome. The course helped me in clearly define problems and generate a wider variety of quality solutions. Support more structures analysis of options leading to better decisions."
+   },
+]
+   
+
 export const carouselDetails: Carousel[]=[
    { 
       title:' The complete guide to react vue development',
@@ -113,26 +128,13 @@ export const webinarDetails: WebinarCard[]=[
    {
       id:1,
       name:"Get working experience to work with this amazing",
-      level:"intermediate",
+      level:"beginner",
       price:500,
       image:'https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
       applyLink:"https://www.google.com/",
-   },
-   {
-      id:1,
-      name:"Get working experience to work with this amazing",
-      level:"intermediate",
-      price:500,
-      image:'https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-      applyLink:"https://www.google.com/",
-   },
-   {
-      id:1,
-      name:"Get working experience to work with this amazing",
-      level:"intermediate",
-      price:500,
-      image:'https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-      applyLink:"https://www.google.com/",
+      date:"29-9-2021",
+      time:'3:00 am',
+
    },
    {
       id:2,
@@ -141,6 +143,20 @@ export const webinarDetails: WebinarCard[]=[
       price:500,
       image:'https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
       applyLink:"https://www.google.com/",
+
+      date:"29-9-2021",
+      time:'3:00 am',
+   },
+
+   {
+      id:3,
+      name:"Get working experience to work with this amazing",
+      level:"advance",
+      price:500,
+      image:'https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      applyLink:"https://www.google.com/",
+      date:"29-9-2021",
+      time:'3:00 am',
    },
    {
       id:3,
@@ -149,14 +165,29 @@ export const webinarDetails: WebinarCard[]=[
       price:500,
       image:'https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
       applyLink:"https://www.google.com/",
+      date:"29-9-2021",
+      time:'3:00 am',
+   },
+
+   {
+      id:4,
+      name:"Get working experience to work with this amazing",
+      level:"advance",
+      price:500,
+      image:'https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      applyLink:"https://www.google.com/",
+      date:"29-9-2021",
+      time:'3:00 am',
    },
    {
-      id:3,
+      id:5,
       name:"Get working experience to work with this amazing",
       level:"intermediate",
       price:500,
       image:'https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
       applyLink:"https://www.google.com/",
+      date:"29-9-2021",
+      time:'3:00 am',
    },
 ];
 export const exploreDetails: Explore[]=[
@@ -185,257 +216,103 @@ export const exploreDetails: Explore[]=[
       applyLink:"https://www.google.com/",
    },
 ]
+export const courseDetails :CourseDetails={
+   id:0,
+   title:"React Web developemnt",
+   date:'29-9-2021',
+   duration:90,
+   instructor:'Jane Doe',
+   enrolled:34,
+   time:'4:00 pm',
+   price:99,
+   description:'  Knowing PHP has allowed me to make enough money to stay home and make courses like this one for students all over the world. Being a PHP developer can allow anyone to make really good money online and offline, developing dynamic applications. Knowing PHP will allow you to build web applications, websites or Content Management systems, like WordPress, Facebook, Twitter or even Google. ',
+   link:"/pay",
+   category:'engineering',
+   image:'https://images.unsplash.com/photo-1611095564985-89765398121e?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8YnVzaW5lc3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
 
-
-export const myProject :myProfileProject[]=[
-{
-   id:1,
-   name:"Jane Austen",
-   description1:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   description2:'this is so cool i love it ',
-    image:"https://images.unsplash.com/photo-1617187735632-727b180e432d?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIyfHRvd0paRnNrcEdnfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-   projects:12,
-   followers:56,
-   following:67,
-},
-{
-   id:2,
-   name:"Jane Austen",
-   description1:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   description2:'this is so cool i love it ',
-  image:"https://images.unsplash.com/photo-1617187735632-727b180e432d?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIyfHRvd0paRnNrcEdnfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-   projects:12,
-   followers:56,
-   following:67,
-},
-{
-   id:3,
-   name:"Jane Austen",
-   description1:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   description2:'this is so cool i love it ',
-  image:"https://images.unsplash.com/photo-1617187735632-727b180e432d?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIyfHRvd0paRnNrcEdnfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-   projects:12,
-   followers:56,
-   following:67,
-},
-{
-   id:4,
-   name:"Jane Austen",
-   description1:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   description2:'this is so cool i love it ',
-  image:"https://images.unsplash.com/photo-1617187735632-727b180e432d?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIyfHRvd0paRnNrcEdnfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-   projects:12,
-   followers:56,
-   following:67,
-},
-{
-   id:5,
-   name:"Jane Austen",
-   description1:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   description2:'this is so cool i love it ',
-  image:"https://images.unsplash.com/photo-1617187735632-727b180e432d?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIyfHRvd0paRnNrcEdnfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-   projects:12,
-   followers:56,
-   following:67,
-},
-]
- export const profileDetails :ProfileCard[]=[
+};
+export const outcomeDetails :Outcome[]=[
    {
-      id:1,
-      name:"Jane Austen",
-      email:"inovact@gmail.com",
-      ph:1234645353,
-     image:"https://images.unsplash.com/photo-1617187735632-727b180e432d?ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDIyfHRvd0paRnNrcEdnfHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-      projects:12,
-      followers:56,
-      following:67,
+      outcome:'Clean up face imperfections, improve and repair photos',
    },
+   {
+      outcome:'Clean up face imperfections, improve and repair photos',
+   },
+   {
+      outcome:'Clean up face imperfections, improve and repair photos',
+   },
+
 ]
 
-export const mentorDetails :MentorCard[]=[
-    {
-      id:1,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:2,
-      name:"Admin",
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:3,
-      name:"Admin",
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:4,
-      name:"Admin",
-      projects:100,
-      mentored:283,
-    },
- ]
- export const instructorDetails :InstructorCard[]=[
+export const instructorDetails :InstructorCard[]=[
    {
-     id:1,
-     name:'Jane Doe',
-     projects:100,
-     mentored:283,
+      id:0,
+      name:"Jane Doe",
+      mentored:3,
+      designation:'Web Developer',
+      description:'Jone Smit is a celebrated photographer, author, and writer who brings passion to everything he does.',
+      projects:45,
+      image:'https://images.unsplash.com/photo-1561677843-39dee7a319ca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdHJ1Y3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      ref:'inovact.in',
    },
    {
-      id:2,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:3,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:4,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:5,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:6,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:7,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:8,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-    {
-      id:9,
-      name:'Jane Doe',
-      projects:100,
-      mentored:283,
-    },
-]
-export const teamDetails:IdeaCards[]=[
-   {
-   id: 1,
-   title:'Title of the Team',
-   name:'Jane Austen',
-   description:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   isComplete:true,
-   image:avatar
-   },
-
-   {
-      id: 1,
-      title:'Title of the Idea',
-      name:'Jane Austen',
-      description:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-      isComplete:true,
-      image:avatar
-      },
-];
-
-export const ideaDetails:IdeaCards[]=[
-   {
-   id: 1,
-   title:'Title of the Idea',
-   name:'Jane Austen',
-   description:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   isComplete:true,
-   image:avatar
-   },
-
-   {
-      id: 1,
-      title:'Title of the Idea',
-      name:'Jane Austen',
-      description:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-      isComplete:true,
-      image:avatar
-      },
-];
-
-export const teamlist: TeamMenu[]= [
-   {
-      index:4,
-      teamname:"Team 1",
-      designation:"admin",
-      icon:team,
-      path:'/feed',
+      id:0,
+      name:"Jane Doe",
+      mentored:3,
+      designation:'Web Developer',
+      description:'Jone Smit is a celebrated photographer, author, and writer who brings passion to everything he does.',
+      projects:45,
+      image:'https://images.unsplash.com/photo-1561677843-39dee7a319ca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdHJ1Y3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      ref:'inovact.in',
    },
    {
-      index:5,
-      teamname:"Team 1",
-      designation:"admin",
-      icon:team,
-      path:'/feed',
+      id:0,
+      name:"Jane Doe",
+      mentored:3,
+      designation:'Web Developer',
+      description:'Jone Smit is a celebrated photographer, author, and writer who brings passion to everything he does.',
+      projects:45,
+      image:'https://images.unsplash.com/photo-1561677843-39dee7a319ca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdHJ1Y3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      ref:'inovact.in',
    },
-];
-
-export const projectDetails:ProjectCards[]=[
    {
-   id: 1,
-   title:'Title of the project',
-   name:'Jane Austen',
-   description:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   isComplete:true,
-   image:avatar
+      id:0,
+      name:"Jane Doe",
+      mentored:3,
+      designation:'Web Developer',
+      description:'Jone Smit is a celebrated photographer, author, and writer who brings passion to everything he does.',
+      projects:45,
+      image:'https://images.unsplash.com/photo-1561677843-39dee7a319ca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdHJ1Y3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      ref:'inovact.in',
    },
-
-   {id: 2,
-   title:'Title of the project',
-   name:'Jane Austen',
-   description:'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-   
-   isComplete:true,
-   image:avatar
+   {
+      id:0,
+      name:"Jane Doe",
+      mentored:3,
+      designation:'Web Developer',
+      description:'Jone Smit is a celebrated photographer, author, and writer who brings passion to everything he does.',
+      projects:45,
+      image:'https://images.unsplash.com/photo-1561677843-39dee7a319ca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdHJ1Y3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      ref:'inovact.in',
    },
-];
-
-
-export const sidebarData: MenuList[] = [
-    {
-       text:'Home',
-       icon:home,
-       index: 0,
-       path:'/feed'
-    },
-    {
-        text:'My Projects',
-        icon:projects,
-        index: 1,
-        path:'/myprofile'
-     },
-     {
-        text:'My Ideas',
-        icon:idea,
-        index: 2,
-        path:'/myprofile'
-     },
-     {
-        text:'Subscibers',
-        icon:team,
-        index: 3,
-        path:'/myprofile'
-     },
-    
+   {
+      id:0,
+      name:"Jane Doe",
+      mentored:3,
+      designation:'Web Developer',
+      description:'Jone Smit is a celebrated photographer, author, and writer who brings passion to everything he does.',
+      projects:45,
+      image:'https://images.unsplash.com/photo-1561677843-39dee7a319ca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdHJ1Y3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      ref:'inovact.in',
+   },
+   {
+      id:0,
+      name:"Jane Doe",
+      mentored:3,
+      designation:'Web Developer',
+      description:'Jone Smit is a celebrated photographer, author, and writer who brings passion to everything he does.',
+      projects:45,
+      image:'https://images.unsplash.com/photo-1561677843-39dee7a319ca?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW5zdHJ1Y3RvcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      ref:'inovact.in',
+   }
 ];

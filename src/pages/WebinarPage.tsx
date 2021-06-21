@@ -1,12 +1,12 @@
 import React from 'react'
-
-import PopularCourses from './../components/PopularCourses';
-import ExploreCourses from './../components/ExploreCourses';
-import PopularInstructor from './../components/PopularInstructor';
+import PopularCourses from './../components/Home/UpcomingLiveCourses';
+import PopularInstructor from './../components/Home/PopularInstructor';
 import NavigationBar from './../components/Elements/Navbar';
-import Carousel from './../components/Elements/Carousel';
+import Carousel from './../components/Elements/Carousel/Carousel';
 import Footer from '../components/Elements/Footer.tsx/Footer'
 import {Divider} from '@material-ui/core';
+import Testimonials from './../components/Home/Testimonials';
+import PreviousLiveCourses from './../components/Home/PreviousLiveCourses'
 
 export default function WebinarPage() {
     return (
@@ -16,9 +16,10 @@ export default function WebinarPage() {
             <Carousel />
             <PopularCourses />
             <Divider style={{margin:'40px'}}/>
-            <ExploreCourses />
+            <PreviousLiveCourses />
             <Divider style={{margin:'40px'}}/>
             <PopularInstructor />
+             <Testimonials />
             <Footer />
         </div>
     )

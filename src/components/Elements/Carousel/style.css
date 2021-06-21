@@ -6,6 +6,18 @@
 	max-height: 350px;
 }
 
+.carousel-item:after {
+	content: "";
+	display: block;
+	position: absolute;
+	padding: 20px;
+	top: 0;
+	bottom: 0px;
+	left: 0;
+	right: 0px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
 .content {
 	/* display: flex; */
 	justify-content: left;

@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) =>
     width: '200px',
     height: '120px',
     backgroundColor: '#020652',
-  
+   
   },
   cover: {
     width:'120px',
@@ -52,7 +52,11 @@ const useStyles = makeStyles((theme) =>
     borderStyle: 'solid',
     borderColor:' white',
     borderWidth: '5px',
-    
+    '@media screen and (max-width: 600px)': {
+      width: '100px',
+      height: '100px',
+      right: '40%',
+    },
   },
   CHcontent:{
     display:'flex',

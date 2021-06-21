@@ -8,6 +8,8 @@ import Rating from './../Elements/Rating/Rating';
 import PriceCard from './../Card/PriceCard';
 import info from './../../assets/img/product.png'
 import Payment from './../PaymentRoute';
+import Pay from './../Payment';
+
 import {courseDetails,outcomeDetails,curriculumDetails,reviewDetails} from './../data/data';
 
 import {Container,ListItem,ListItemAvatar,IconButton,List,Avatar,ListItemText,
@@ -21,27 +23,29 @@ interface TabPanelProps {
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
+
   return (
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
       {value === index && (
-        <Box p={2} >
-          <Typography >{children}</Typography>
+        <Box p={3}>
+          <Typography>{children}</Typography>
         </Box>
       )}
     </div>
   );
 }
 
+
 function a11yProps(index: any) {
   return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
   };
 }
 
@@ -84,15 +88,33 @@ const useStyles = makeStyles((theme: Theme) => ({
         backgroundColor:'#020652',
         color:'#FFA500',
       }
-    }
+    },
+    grid1:{
+      marginTop:'20px',
+      display:'block',
+      '@media screen and (max-width: 600px)': {
+        display:'none'
+      }
+    },
+    mainImg:{
+      width:"100%",
+       height:"500px",
+       '@media screen and (max-width: 600px)': {
+        height:"auto",
+      }
+    },
+    tab:{
+      
+      marginLeft:'-100px',
+      backgroundColor:'white',
+      boxShadow:'none',
+      '@media screen and (max-width: 600px)': {
+        width:'300px',
+        marginLeft:'40px',
+      },
+    },
 }));
-function generate(element: React.ReactElement) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
+
 
 export default function CourseInfo() {
   const classes = useStyles();
@@ -111,11 +133,11 @@ export default function CourseInfo() {
     <div  >
       <Container>
       <Grid container  direction="row" spacing={3} className={classes.container}>
-        <Grid item xs={8}>
+        <Grid item xs={12} md={8}>
             <Box>
                 <Typography variant="h4" color="primary">{courseDetails.title}</Typography>
                 <Box>
-                    <Grid container spacing={2} style={{marginTop:'20px'}}>
+                    <Grid container spacing={2} className={classes.grid1}>
                           <Grid item xs container direction="row" spacing={2}>
                             <Grid item xs className={classes.grid}>
                             <Typography gutterBottom variant="h6">
@@ -137,12 +159,12 @@ export default function CourseInfo() {
                         <Typography gutterBottom variant="body2" ><span>&#8377;</span>{courseDetails.price}</Typography>
                         </Grid>
                          <Grid item xs>
-                     <Payment />
+                     <Pay />
                         </Grid>
                       </Grid>
                 </Grid>
                 <Box style={{marginTop:'20px'}}>
-                  <img src="https://images.unsplash.com/photo-1611095564985-89765398121e?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8YnVzaW5lc3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" width="100%" height="500px" />
+                  <img src="https://images.unsplash.com/photo-1611095564985-89765398121e?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8YnVzaW5lc3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" className={classes.mainImg} />
                 </Box>
             </Box>
         </Box>
@@ -150,13 +172,14 @@ export default function CourseInfo() {
      
       <AppBar position="static" color="default" style={{backgroundColor:'white',boxShadow:'none',}}>
         <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-          style={{marginLeft:'-100px',backgroundColor:'white',boxShadow:'none',}} >
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example"
+           className={classes.tab} >
           <Tab label="Overview" {...a11yProps(0)} />
           <Tab label="Curriculum" {...a11yProps(1)} />
           <Tab label="Instructor" {...a11yProps(2)} />
@@ -284,7 +307,7 @@ export default function CourseInfo() {
       </SwipeableViews>
       </Grid>
 
-      <Grid item xs={4} style={{padding:'30px'}}>
+      <Grid item xs={12} md={4} style={{padding:'30px'}}>
         <Grid item container direction="column" spacing={2}>
               <PriceCard />
         </Grid>

@@ -4,8 +4,7 @@ import Rating from './../Elements/Rating/Rating';
 import {Card,CardMedia,CardContent,CardActions,Avatar,
   Typography,Box,Button, CardActionArea,Chip,Divider,Container} from '@material-ui/core';
 import {webinarDetails} from './../data/data';
-
-
+import {Link} from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 
@@ -67,6 +66,13 @@ const useStyles = makeStyles((theme) =>
   cover: {
    
   },
+  link:{
+    textDecoration:'none',
+    color:'#FFA500',
+    '&:hover':{
+      textDecoration:'none',
+    },
+  },
   carouselWrapper: {
   
     '.carousel-container': {
@@ -86,7 +92,11 @@ const useStyles = makeStyles((theme) =>
     },
   },
   instructor:{
-marginLeft:'10px',
+    marginLeft:'10px',
+    '@media screen and (max-width: 1200px)': {
+      margin:'5px',
+      
+    },
   },
   CHcontent:{
     display:'flex',
@@ -108,7 +118,10 @@ marginLeft:'10px',
         color:'#FFA500',
         border:'1px solid transparent',  
         borderRadius:'5px',
-      }
+      },
+      '@media screen and (max-width: 1200px)': {
+        marginLeft:'0px',
+      },
     },
       price:{
       color:'green',
@@ -117,6 +130,9 @@ marginLeft:'10px',
       avatars:{
         display:'flex',
         flexDirection:'row',
+        '@media screen and (max-width: 1200px)': {
+          padding:'5px',
+        },
       },
       level:{
         background:'rgba(255,160,0,0.3)',
@@ -131,7 +147,14 @@ marginLeft:'10px',
       },
       divider:{
 
+      },
+      rat:{
+        display:'block',
+        '@media screen and (max-width: 1200px)': {
+          display:'none'
+        }
       }
+
 }));
 
 const responsive = {
@@ -227,13 +250,17 @@ const RenderMentorCard:React.FC =()=> {
 
                     <Box className={classes.instructor}>
                         <Typography variant="h6">Jane Doe</Typography>
+                        <div className={classes.rat}>
                         <Rating rating={4} />
+                        </div>
+                       
                     </Box>
                 </Box>
                 
-                <Box>
-                <Button className={classes.learn}>Learn More </Button>
-                </Box>
+             
+                <Link to={`/course${card.id}`} className={classes.link}>
+                      <Typography className={classes.learn} variant="h6">Learn More</Typography>
+                 </Link>
           </CardActions>
           </Card>
         );

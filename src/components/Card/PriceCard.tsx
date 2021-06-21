@@ -43,13 +43,12 @@ const useStyles = makeStyles((theme) =>
   },
   card:{
     
-   // boxShadow: "3px 8px 10px -12px rgba(0,0,0,0.3)",
     marginTop:20,
     marginLeft:20,
    borderTop:'2px solid #020652',
-   // backgroundColor:'rgba(255,255,255,0.3)',
     [theme.breakpoints.down('sm')]: {
-      marginLeft:20,
+      marginLeft:'-20px',
+      width:'300px',
     },
   },
   cardcontent:{
@@ -117,8 +116,9 @@ const useStyles = makeStyles((theme) =>
           paddingTop:'20px',
       },
       button:{
-        width:'100%',
+        width:'300px',
         display:'block',
+       
       }
   
 }));
@@ -193,7 +193,7 @@ const CourseCard:React.FC =()=> {
              
 
               <Grid item xs>
-                <Box className={classes.priceGrid} style={{alignItems:'center',}}>
+                <Box className={classes.button} style={{alignItems:'center',}}>
                        <Payment />
                 </Box>
               </Grid>

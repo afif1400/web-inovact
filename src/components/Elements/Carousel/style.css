@@ -22,6 +22,7 @@
     position: absolute;
     left:10px;
     z-index: 100;
+
 }
 .button{
   display: none !important;
@@ -37,7 +38,7 @@
     font-size: 24px !important; 
   }
   .captions {
-    left:5;
+    left:10;
     bottom:100px;
     margin:0; 
   
@@ -46,9 +47,9 @@
     background: linear-gradient(to right,rgba(0,0,0,0.1),rgba(0,0,0,0.1));
   }
   .button{
-    display: block;
+    display: block !important;
     position: relative;
-    left:25%;
+    left:5%;
   }
   .buttonlarge{
     display: none !important;

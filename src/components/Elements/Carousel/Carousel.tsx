@@ -1,14 +1,12 @@
 import React,{ useState } from 'react';
 import{ Box ,Typography,Button} from '@material-ui/core';
-
 import Rating from '../Rating/Rating';
 import {carouselDetails} from '../../data/data';
-
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 
-export default function ControlledCarousel() {
+export default function CarouselComponent() {
     const [index, setIndex] = useState(0);
   
     const handleSelect = (selectedIndex:number, e:any) => {
@@ -21,7 +19,6 @@ export default function ControlledCarousel() {
        {carouselDetails.map((data)=>{
          return(
           <Carousel.Item className="carousel" >
-
 <img
                   className="d-block w-100 img-responsive "
                   src={data.url}
@@ -41,8 +38,6 @@ export default function ControlledCarousel() {
                     </Box>
                   </Box>
                 </Carousel.Caption>
-
-               
         </Carousel.Item>
          );
        })}

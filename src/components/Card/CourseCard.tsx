@@ -95,11 +95,13 @@ const useStyles = makeStyles((theme) =>
     padding:'5px',
     width:'100%',
     paddingX:'20px',
+    textDecoration:'none',
       '&:hover':{
         backgroundColor:'#020652',
         color:'#FFA500',
         border:'1px solid transparent',  
         borderRadius:'5px',
+        textDecoration:'none',
       }
     },
 
@@ -123,6 +125,13 @@ const useStyles = makeStyles((theme) =>
       },
       divider:{
 
+      },
+      link:{
+        textDecoration:'none',
+        color:'#FFA500',
+        '&:hover':{
+          textDecoration:'none',
+        }
       }
 }));
 
@@ -214,7 +223,7 @@ const CourseCard:React.FC =()=> {
                    {card.date} &#8739; {card.time}
                 </Box>
                 <Box>
-                  <Link to={`/course${card.id}`}>
+                  <Link to={`/course${card.id}`} className={classes.link}>
                  
                   <Typography className={classes.learn} variant="h6">Learn More</Typography>
                   </Link>

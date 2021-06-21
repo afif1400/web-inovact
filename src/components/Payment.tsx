@@ -15,10 +15,6 @@ function loadScript(src: string) {
 		document.body.appendChild(script);
 	});
 }
-const button ={
-	width:'300px',
-	display:'block',
-}
 
 const __DEV__ = document.domain === "localhost";
 
@@ -68,7 +64,7 @@ const PaymentRoute = () => {
 
 	return (
 		<div>
-				<Button variant="contained" size="large" onClick={() => displayRazorpay()} color="primary" style={button}>Register Now</Button>
+				<Button variant="contained" size="large" onClick={() => displayRazorpay()} color="primary">Register Now</Button>
 		</div>
 	);
 };

@@ -1,57 +1,55 @@
-.carousel-stuff{
-  margin: 50px 30px 20px;
-  padding-top:40px;
+.carousel-stuff {
+	margin: 50px 30px 20px;
+	padding-top: 40px;
 }
-.carousel {
-    height:300px;
-    margin-left:25px;
-}
-.content{
-  display:flex;
-  justify-content:left;
-  align-items:left;
-  flex-direction:column;
-  text-align:left;
-}
-.title{
-  margin-bottom: 10px;
+.carousels {
+	max-height: 350px;
 }
 
-.captions{
-    margin-left: 100px;
-    position: absolute;
-    left:10px;
-    z-index: 100;
+.content {
+	/* display: flex; */
+	justify-content: left;
+	align-items: left;
+	flex-direction: column;
+	text-align: left;
+}
+.title {
+	margin-bottom: 10px;
+}
 
+.captions {
+	position: absolute;
 }
-.button{
-  display: none !important;
+.button {
+	display: none !important;
 }
-.buttonlarge{
-  display: block;
+.buttonlarge {
+	display: block;
 }
-@media screen and (max-width:600px) {
-  .carousel{
-    margin: 30px 10px 10px;
-  }
-.title{
-    font-size: 24px !important; 
-  }
-  .captions {
-    left:10;
-    bottom:100px;
-    margin:0; 
-  
-  }
-  .carousel .captions{
-    background: linear-gradient(to right,rgba(0,0,0,0.1),rgba(0,0,0,0.1));
-  }
-  .button{
-    display: block !important;
-    position: relative;
-    left:5%;
-  }
-  .buttonlarge{
-    display: none !important;
-  }
+@media screen and (max-width: 600px) {
+	.carousel {
+		margin: 30px 10px 10px;
+	}
+	.title {
+		font-size: 24px !important;
+	}
+	.captions {
+		left: 10;
+		/* bottom: 20%; */
+		margin: 0;
+	}
+
+	.button {
+		display: block !important;
+		position: relative;
+		left: 5%;
+	}
+	.buttonlarge {
+		display: none !important;
+	}
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+	top: 20%;
 }

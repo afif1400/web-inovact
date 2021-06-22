@@ -21,8 +21,11 @@ const button ={
 }
 
 const __DEV__ = document.domain === "localhost";
+type Props = { 
+	s: boolean;
+ };
 
-const PaymentRoute = () => {
+const PaymentRoute:React.FC <Props> = ({s}) => {
 	const [name, setName] = useState("Afif");
 
 	async function displayRazorpay() {
@@ -44,7 +47,7 @@ const PaymentRoute = () => {
 		const options = {
 			key: __DEV__ ? "rzp_test_7AvAkPKH4CvzCV" : process.env.RAZORPAY_KEY,
 			currency: data.currency,
-			amount: data.amount.toString(),
+			amount: data.toString(),
 			order_id: data.id,
 			name: data.course_name,
 			description: "This is the course description",
@@ -65,12 +68,9 @@ const PaymentRoute = () => {
 		const paymentObject = new _window.Razorpay(options);
 		paymentObject.open();
 	}
+	let k={s};
+	return k ? <Button variant="contained" size="large" onClick={() => displayRazorpay()} color="primary" style={button}>Register Now</Button>: <Button variant="contained" size="medium" onClick={() => displayRazorpay()} color="primary" style={button}>Register Now</Button>;
 
-	return (
-		<div>
-				<Button variant="contained" size="large" onClick={() => displayRazorpay()} color="primary" style={button}>Register Now</Button>
-		</div>
-	);
 };
 
 export default PaymentRoute;

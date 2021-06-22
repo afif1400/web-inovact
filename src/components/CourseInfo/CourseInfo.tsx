@@ -1,14 +1,12 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import logo from './../../assets/img/right.png';
 import Rating from './../Elements/Rating/Rating';
 import PriceCard from './../Card/PriceCard';
 import info from './../../assets/img/product.png'
 import Payment from './../PaymentRoute';
-import Pay from './../Payment';
 
 import {courseDetails,outcomeDetails,curriculumDetails,reviewDetails} from './../data/data';
 
@@ -159,7 +157,7 @@ export default function CourseInfo() {
                         <Typography gutterBottom variant="body2" ><span>&#8377;</span>{courseDetails.price}</Typography>
                         </Grid>
                          <Grid item xs>
-                     <Pay />
+                     <Payment s={false} />
                         </Grid>
                       </Grid>
                 </Grid>

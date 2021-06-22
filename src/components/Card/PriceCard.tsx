@@ -9,7 +9,7 @@ import date from './../../assets/img/date.png';
 import enrolled from './../../assets/img/avatar.png';
 import instructor from './../../assets/img/professor.png';
 import Payment from './../PaymentRoute';
-
+import {courseDetails} from './../data/data';
 const colors = [
   ['red'],
 ['#ffa500'],
@@ -155,7 +155,7 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={price} width="20" height="20"/>Price</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" className={classes.price}><span>&#8377;</span>50</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" className={classes.price}><span>&#8377;</span>{courseDetails.price}</Typography>
                 </Box>
               </Grid>
               <Divider style={{paddingLeft:'30px'}}/>
@@ -163,7 +163,7 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={instructor} width="20" height="20"/>Instructor</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" >Jane doe</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" >{courseDetails.instructor}</Typography>
                 </Box>
               </Grid>
               <Divider style={{paddingLeft:'30px'}}/>
@@ -171,7 +171,7 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={enrolled} width="20" height="20"/>Enrolled</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" >50</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" >{courseDetails.enrolled}</Typography>
                 </Box>
               </Grid>
               <Divider style={{paddingLeft:'30px'}}/>
@@ -179,7 +179,7 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={time} width="20" height="20"/>Duration</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" >50</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" >{courseDetails.duration}</Typography>
                 </Box>
               </Grid>
               <Divider style={{paddingLeft:'30px'}}/>
@@ -187,14 +187,14 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={date} width="20" height="20"/>Date</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" >50</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" >{courseDetails.date}</Typography>
                 </Box>
               </Grid>
              
 
               <Grid item xs>
                 <Box className={classes.button} style={{alignItems:'center',}}>
-                       <Payment />
+                       <Payment s={true} />
                 </Box>
               </Grid>
               

@@ -194,7 +194,7 @@ const CourseCard:React.FC =()=> {
 
               <Grid item xs>
                 <Box className={classes.button} style={{alignItems:'center',}}>
-                       <Payment s={true} />
+                       <Payment />
                 </Box>
               </Grid>
               

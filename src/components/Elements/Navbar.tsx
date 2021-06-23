@@ -1,17 +1,16 @@
-import React from 'react';
-import logo from './../../assets/img/logo.png';
-import { Link } from 'react-router-dom';
-const Navigation =()=>{
-    return(
-        <header className="header" id='header' >
-        <Link to='/' className='logo'>
-          <img src={logo} alt="Logo" width="40" height="40"/>
-            <span className="logoname" >Inovact</span>
-        </Link>
-        
-       
-        <style>
-            {`
+import React from "react";
+import logo from "./../../assets/img/logo.png";
+import { Link } from "react-router-dom";
+const Navigation = () => {
+	return (
+		<header className='header' id='header'>
+			<Link to='/' className='logo'>
+				<img src={logo} alt='Logo' width='40' height='40' />
+				<span className='logoname'>Inovact</span>
+			</Link>
+
+			<style>
+				{`
             header{
                 position:fixed;
                 top:0;
@@ -23,7 +22,7 @@ const Navigation =()=>{
                 justify-content:space-between;
                 align-items:center;
                 padding: 10px;
-                z-index:100;
+                z-index:1000;
                 transition:0.6s;
                 color:#FFA500;
             }
@@ -67,8 +66,8 @@ const Navigation =()=>{
                     top:-3px;
                 }
             `}
-        </style>
-   </header>
-    );
-}
+			</style>
+		</header>
+	);
+};
 export default Navigation;

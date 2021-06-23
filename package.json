@@ -61,7 +61,7 @@
     "@types/react-swipeable-views": "^0.13.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "netlify-cli": "^3.37.16",
+    "netlify-cli": "^3.37.37",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-swipeable-views": "^0.14.0"

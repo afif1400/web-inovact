@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import {
 	Card,
@@ -15,6 +15,8 @@ import { webinarDetails } from "../data/data";
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+
+import axios from "axios";
 
 const colors = [["red"], ["#ffa500"], ["green"]];
 const beginner = {
@@ -155,6 +157,18 @@ const responsive = {
 
 const CourseCard: React.FC = () => {
 	const classes = useStyles();
+	const [courses, setCourses] = useState([]);
+
+	useEffect(() => {
+		// debugger;
+		axios
+			.get("http://localhost:8888/.netlify/functions/getCourses")
+			.then((response: any) => {
+				// console.log(response.data.courses);
+				setCourses(response.data.courses);
+			});
+	}, []);
+
 	return (
 		<Carousel
 			additionalTransfrom={0}
@@ -174,95 +188,97 @@ const CourseCard: React.FC = () => {
 			showDots={false}
 			slidesToSlide={1}
 		>
-			{webinarDetails.map((card) => {
-				return (
-					<Card className={classes.card}>
-						<CardMedia
-							component='img'
-							className={classes.cover}
-							alt='user Image'
-							image='https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
-							title='User Image'
-						/>
+			{courses &&
+				courses.map((card: any) => {
+					return (
+						<Card className={classes.card} key={card.id}>
+							<CardMedia
+								component='img'
+								className={classes.cover}
+								alt='user Image'
+								image='https://images.unsplash.com/photo-1494599948593-3dafe8338d71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2ViaW5hcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+								title='User Image'
+							/>
 
-						<CardContent className={classes.cardcontent}>
-							<Box className={classes.CHcontent}>
-								{(() => {
-									switch (card.level) {
-										case "beginner":
-											return (
-												<Chip
-													size='small'
-													label={card.level}
-													clickable
-													style={beginner}
-													variant='outlined'
-												/>
-											);
+							<CardContent className={classes.cardcontent}>
+								<Box className={classes.CHcontent}>
+									{(() => {
+										console.log(card.level);
+										switch (card.level) {
+											case "beginner":
+												return (
+													<Chip
+														size='small'
+														label={card.level}
+														clickable
+														style={beginner}
+														variant='outlined'
+													/>
+												);
 
-										case "intermediate":
-											return (
-												<Chip
-													size='small'
-													label={card.level}
-													clickable
-													style={intermediate}
-													variant='outlined'
-												/>
-											);
+											case "intermediate":
+												return (
+													<Chip
+														size='small'
+														label={card.level}
+														clickable
+														style={intermediate}
+														variant='outlined'
+													/>
+												);
 
-										case "advance":
-											return (
-												<Chip
-													size='small'
-													label={card.level}
-													clickable
-													style={advance}
-													variant='outlined'
-												/>
-											);
+											case "Advance":
+												return (
+													<Chip
+														size='small'
+														label={card.level}
+														clickable
+														style={advance}
+														variant='outlined'
+													/>
+												);
 
-										default:
-											return null;
-									}
-								})()}
+											default:
+												return null;
+										}
+									})()}
 
-								<Typography
-									gutterBottom
-									variant='h6'
-									component='h4'
-									className={classes.price}
-								>
-									<span>&#8377;</span>
-									{card.price}
-								</Typography>
-							</Box>
-							<Box>
-								<Typography
-									gutterBottom
-									variant='h5'
-									component='h2'
-									className={classes.name}
-								>
-									{card.name}
-								</Typography>
-							</Box>
-						</CardContent>
-						<CardActions className={classes.footer}>
-							<Box className={classes.avatars}>
-								{card.date} &#8739; {card.time}
-							</Box>
-							<Box>
-								<Link to={`/course${card.id}`} className={classes.link}>
-									<Typography className={classes.learn} variant='h6'>
-										Learn More
+									<Typography
+										gutterBottom
+										variant='h6'
+										component='h4'
+										className={classes.price}
+									>
+										<span>&#8377;</span>
+										{card.price}
 									</Typography>
-								</Link>
-							</Box>
-						</CardActions>
-					</Card>
-				);
-			})}
+								</Box>
+								<Box>
+									<Typography
+										gutterBottom
+										variant='h5'
+										component='h2'
+										className={classes.name}
+									>
+										{card.course_title}
+									</Typography>
+								</Box>
+							</CardContent>
+							<CardActions className={classes.footer}>
+								<Box className={classes.avatars}>
+									{card.date} &#8739; {card.time}
+								</Box>
+								<Box>
+									<Link to={`/course${card.id}`} className={classes.link}>
+										<Typography className={classes.learn} variant='h6'>
+											Learn More
+										</Typography>
+									</Link>
+								</Box>
+							</CardActions>
+						</Card>
+					);
+				})}
 		</Carousel>
 	);
 };

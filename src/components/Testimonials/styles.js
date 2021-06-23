@@ -30,10 +30,13 @@ export default makeStyles({
     },
   },
   reviewCard: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
     boxShadow: '0px 6px 47px rgba(38, 78, 118, 0.1)',
     transition: 'all 0.3s',
     maxWidth: '400px',
-    borderRadius: '15%',
+    borderRadius: '12px',
     alignItems: 'center',
     padding: '0px 30px 40px 40px',
     background: 'white',
@@ -82,8 +85,8 @@ export default makeStyles({
     lineHeight: 1.85,
   },
   ratings: {
+    width: "100%"
     // marginTop: '50px',
-    // marginLeft: '100px',
     // justifyContent: 'center',
   },
 });

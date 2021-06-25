@@ -8,7 +8,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import Webinar from "./../pages/WebinarPage";
 import PaymentRoute from "./PaymentRoute";
 import Course from "./../pages/CourseInfo";
-import CourseCard from "./Card/CourseCard";
+
 const theme = createMuiTheme({
 	palette: {
 		primary: {

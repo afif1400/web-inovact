@@ -1,14 +1,12 @@
-import React from "react";
+import React,{useState, useEffect} from 'react';
+import axios from "axios";
 import SwipeableViews from "react-swipeable-views";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import logo from "./../../assets/img/right.png";
 import Rating from "./../Elements/Rating/Rating";
 import PriceCard from "./../Card/PriceCard";
 import info from "./../../assets/img/product.png";
-import Payment from "./../PaymentRoute";
-import Pay from "./../Payment";
 
 import {
 	courseDetails,
@@ -23,13 +21,11 @@ import {
 	ListItemAvatar,
 	IconButton,
 	List,
-	Avatar,
 	ListItemText,
 	ListItemIcon,
 	ListItemSecondaryAction,
 	ButtonBase,
 	Button,
-	Card,
 	Grid,
 	Typography,
 	Tab,
@@ -37,6 +33,7 @@ import {
 	Box,
 	Divider,
 } from "@material-ui/core";
+
 import PaymentRoute from "./../PaymentRoute";
 interface TabPanelProps {
 	children?: React.ReactNode;
@@ -134,10 +131,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 }));
 
-export default function CourseInfo() {
+const CourseInfo = ()=> {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [value, setValue] = React.useState(0);
+    const [courses,setCourses]=useState([]);
+	const [dense, setDense] = React.useState(false);
 
 	const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
 		setValue(newValue);
@@ -146,7 +145,17 @@ export default function CourseInfo() {
 	const handleChangeIndex = (index: number) => {
 		setValue(index);
 	};
-	const [dense, setDense] = React.useState(false);
+	
+	
+	useEffect(() => {
+		
+		axios
+			.get("http://localhost:8888/.netlify/functions/getCourse")
+			.then((response: any) => {
+				setCourses(response.data.courses);
+			});
+	}, []);
+	
 	return (
 		<div>
 			<Container>
@@ -159,7 +168,7 @@ export default function CourseInfo() {
 					<Grid item xs={12} md={8}>
 						<Box>
 							<Typography variant='h4' color='primary'>
-								{courseDetails.title}
+								{courses.course_title}
 							</Typography>
 							<Box>
 								<Grid container spacing={2} className={classes.grid1}>
@@ -446,3 +455,4 @@ export default function CourseInfo() {
 		</div>
 	);
 }
+export default CourseInfo;

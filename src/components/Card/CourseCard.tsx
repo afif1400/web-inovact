@@ -5,13 +5,11 @@ import {
 	CardMedia,
 	CardContent,
 	CardActions,
-	Avatar,
 	Typography,
 	Box,
 	Chip,
-	
 } from "@material-ui/core";
-import { webinarDetails } from "../data/data";
+
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -51,7 +49,7 @@ const useStyles = makeStyles((theme) =>
 			marginRight: 20,
 			borderRadius: "15px",
 			backgroundColor: "rgba(255,255,255,0.3)",
-			// background: "transparent",
+			
 			[theme.breakpoints.down("sm")]: {
 				marginLeft: 20,
 			},
@@ -160,7 +158,6 @@ const CourseCard: React.FC = () => {
 	const [courses, setCourses] = useState([]);
 
 	useEffect(() => {
-		// debugger;
 		axios
 			.get("http://localhost:8888/.netlify/functions/getCourses")
 			.then((response: any) => {
@@ -168,6 +165,8 @@ const CourseCard: React.FC = () => {
 				setCourses(response.data.courses);
 			});
 	}, []);
+
+
 
 	return (
 		<Carousel
@@ -205,7 +204,7 @@ const CourseCard: React.FC = () => {
 									{(() => {
 										console.log(card.level);
 										switch (card.level) {
-											case "beginner":
+											case "	Beginner":
 												return (
 													<Chip
 														size='small'
@@ -216,7 +215,7 @@ const CourseCard: React.FC = () => {
 													/>
 												);
 
-											case "intermediate":
+											case "Intermediate":
 												return (
 													<Chip
 														size='small'

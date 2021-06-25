@@ -1,8 +1,15 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
 
-import {Card,CardMedia,CardContent,CardActions,Avatar,Grid,
-  Typography,Box,Button, CardActionArea,Chip,Divider,Container} from '@material-ui/core';
+import {
+    Card,
+    Grid,
+    Typography,
+    Box,
+    CardActionArea,
+    Divider,
+
+} from '@material-ui/core';
 import price from './../../assets/img/rupee.png';
 import time from './../../assets/img/time.png';
 import date from './../../assets/img/date.png';
@@ -10,6 +17,7 @@ import enrolled from './../../assets/img/avatar.png';
 import instructor from './../../assets/img/professor.png';
 import Payment from './../PaymentRoute';
 import {courseDetails} from './../data/data';
+import axios from "axios";
 const colors = [
   ['red'],
 ['#ffa500'],
@@ -148,6 +156,17 @@ const responsive = {
 
 const CourseCard:React.FC =()=> {
   const classes = useStyles();
+  const [courses, setCourses] = useState([]);
+
+	useEffect(() => {
+		// debugger;
+		axios
+			.get("http://localhost:8888/.netlify/functions/getCourses")
+			.then((response: any) => {
+				setCourses(response.data.courses);
+			});
+	}, []);
+
   return (
     <Card className={classes.card} >
       <CardActionArea style={{padding:'30px'}}>

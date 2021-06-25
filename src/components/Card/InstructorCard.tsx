@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { makeStyles ,createStyles} from '@material-ui/core/styles';
 import {Card,CardContent,
   Typography,Box,Button, CardActionArea,Container} from '@material-ui/core';
@@ -8,6 +8,7 @@ import {instructorDetails} from './../data/data';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 
+import axios from "axios";
 const useStyles = makeStyles((theme) =>
   createStyles({
     card:{
@@ -98,6 +99,17 @@ const responsive = {
 };
 const RenderMentorCard:React.FC =()=> {
   const classes = useStyles();
+  const [instructors,setInstructors]=useState([]);
+
+  useEffect(() => {
+        axios
+        .get("http://localhost:8888/.netlify/functions/getInstructors")
+        .then((response: any) => {
+            setInstructors(response.data.instructors);
+        });
+          
+  }, []);
+
   return (
    <Container className={classes.root}>
  <Carousel
@@ -119,16 +131,17 @@ const RenderMentorCard:React.FC =()=> {
     slidesToSlide={1}
      >
         
-            {instructorDetails.map((card)=> {
+            {instructors &&
+				instructors.map((card: any) => {
               return(
                 <Card className={classes.card}> 
                 <CardActionArea>
               <div className={classes.circle}>
-                <img alt="person" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" className={classes.cover} />
+                <img alt="person" src={card.image} className={classes.cover} />
               </div>
                     <CardContent className={classes.cardcontent}>
                      <Box  className={classes.CHcontent} >
-                          <Typography className={classes.name}>{card.name}</Typography>
+                          <Typography className={classes.name}>{card.instructor_name}</Typography>
                           <Typography className={classes.name} color="textSecondary">{card.mentored} Mentored</Typography>
                           <Button variant="outlined" size="small" color="secondary" className={classes.button}>Know More</Button> 
                      </Box>

@@ -25,7 +25,7 @@ const MainComponent: React.FunctionComponent = (): JSX.Element => {
 			<div>
 				<Router>
 					<Route exact path='/' component={Webinar} />
-					<Route exact path='/course:id' component={Course} />
+					<Route exact path='/:id' component={Course} />
 					<Route exact path='/pay' component={PaymentRoute} />
 				</Router>
 			</div>

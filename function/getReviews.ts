@@ -2,10 +2,9 @@ import { Handler, HandlerEvent } from "@netlify/functions";
 const { query } = require("./utils/hasura");
 
 const handler: Handler = async (event: HandlerEvent) => {
-	console.log("get here");
 
 	const response = await query({
-		query: `query getAllCourses {
+		query: `query getAllReviews {
             reviews {
                 course_id
                 id
@@ -23,7 +22,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
 	return {
 		statusCode: 200,
-		body: JSON.stringify({ courses: response.data.courseDetails }),
+		body: JSON.stringify({ courses: response.data.review }),
 	};
 };
 

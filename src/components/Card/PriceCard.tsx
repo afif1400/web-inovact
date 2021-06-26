@@ -18,23 +18,6 @@ import instructor from './../../assets/img/professor.png';
 import Payment from './../PaymentRoute';
 import {courseDetails} from './../data/data';
 import axios from "axios";
-const colors = [
-  ['red'],
-['#ffa500'],
-['green'],
-];
-const beginner={
-  color: `${colors[2]}`,
-  borderColor:`${colors[2]}`
-}
-const intermediate={
-  color: `${colors[1]}`,
-  borderColor:`${colors[1]}`
-}
-const advance={
-  color: `${colors[0]}`,
-  borderColor:`${colors[0]}`
-}
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -131,42 +114,11 @@ const useStyles = makeStyles((theme) =>
   
 }));
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1619 },
-    items: 3,
-    slidesToSlide: 4, 
-  },
-  laptop: {
-    breakpoint: { max: 1619, min: 1024 },
-    items: 3,
-    slidesToSlide: 3, 
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 640 },
-    items: 3,
-    slidesToSlide: 2, 
-  },
-  mobile: {
-    breakpoint: { max: 639, min: 0 },
-    items: 1,
-    slidesToSlide: 1, 
-  },
-};
 
-const CourseCard:React.FC =()=> {
+
+const PriceCard:React.FC =()=> {
   const classes = useStyles();
-  const [courses, setCourses] = useState([]);
-
-	useEffect(() => {
-		// debugger;
-		axios
-			.get("http://localhost:8888/.netlify/functions/getCourses")
-			.then((response: any) => {
-				setCourses(response.data.courses);
-			});
-	}, []);
-
+  
   return (
     <Card className={classes.card} >
       <CardActionArea style={{padding:'30px'}}>
@@ -223,4 +175,4 @@ const CourseCard:React.FC =()=> {
   );
 }
 
-export default CourseCard;
+export default PriceCard;

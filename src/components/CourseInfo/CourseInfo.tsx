@@ -9,8 +9,6 @@ import PriceCard from "./../Card/PriceCard";
 import info from "./../../assets/img/product.png";
 import { useParams } from "react-router-dom";
 import {
-	courseDetails,
-	outcomeDetails,
 	curriculumDetails,
 } from "./../data/data";
 import axios from "axios";
@@ -75,6 +73,7 @@ const CourseInfo = ()=> {
 	const [value, setValue] = React.useState(0);
     const [courses,setCourses]=useState([]);
 	const [reviews,setReviews]=useState([]);
+
 	useEffect(() => {
 		axios
 			.get("http://localhost:8888/.netlify/functions/getCourses")
@@ -97,16 +96,16 @@ const CourseInfo = ()=> {
 	const handleChangeIndex = (index: number) => {
 		setValue(index);
 	};
-	let item;
+
 	let { id } = useParams<{ id: string }>();
 	let d=parseInt(id);
 	return (
 		<div>
-	 {courses &&
-				courses.filter((card: any) => {
+	         {courses &&
+				courses.map((card: any) => {
+				if(card.id===d){
 					return (
-						 item=(card.id===d)?
-						 <Container>
+                       <Container>
 						 <Grid
 							 container
 							 direction='row'
@@ -203,8 +202,7 @@ const CourseInfo = ()=> {
 												 What will you learn?
 											 </Typography>
 		 
-											
-												 <ListItem>
+												 <ListItem >
 													 <ListItemIcon>
 														 <img src={logo} width='30' height='30' alt="outcome" />
 													 </ListItemIcon>
@@ -400,12 +398,14 @@ const CourseInfo = ()=> {
 								 </Grid>
 							 </Grid>
 						 </Grid>
-					 </Container> :"Loading"
+					 </Container>
 					);
-		})
-	 }
-			
-		</div>
+				}
+				else {
+					return null;
+				}	
+			})}
+  </div>
 	);
 }
 export default CourseInfo;

@@ -22,7 +22,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
 	return {
 		statusCode: 200,
-		body: JSON.stringify({ courses: response.data.review }),
+		body: JSON.stringify({ reviews: response.data.reviews }),
 	};
 };
 

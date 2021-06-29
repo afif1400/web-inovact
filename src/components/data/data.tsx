@@ -71,13 +71,13 @@ export const curriculumDetails: Curriculum[]=[
       duration:10,
    },
    {
-      id:0,
+      id:1,
       courseId:0,
       lesson:"Introduction",
       duration:10,
    },
    {
-      id:0,
+      id:2,
       courseId:0,
       lesson:"Introduction",
       duration:3,

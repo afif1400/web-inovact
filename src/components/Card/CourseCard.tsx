@@ -58,7 +58,7 @@ const CourseCard: React.FC = () => {
 	const [courses, setCourses] = useState([]);
 
 	useEffect(() => {
-		// debugger;
+	
 		axios
 			.get("http://localhost:8888/.netlify/functions/getCourses")
 			.then((response: any) => {
@@ -103,7 +103,7 @@ const CourseCard: React.FC = () => {
 									{(() => {
 										console.log(card.level);
 										switch (card.level) {
-											case "beginner":
+											case "Beginner":
 												return (
 													<Chip
 														size='small'
@@ -114,7 +114,7 @@ const CourseCard: React.FC = () => {
 													/>
 												);
 
-											case "intermediate":
+											case "Intermediate":
 												return (
 													<Chip
 														size='small'

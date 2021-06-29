@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useStyles from './../../styles/PreviousCard';
 import Rating from "./../Elements/Rating/Rating";
 import {
@@ -11,10 +11,10 @@ import {
 	Box,
 	Chip,
 } from "@material-ui/core";
-import { webinarDetails } from "./../data/data";
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import axios from "axios";
 
 const colors = [["red"], ["#ffa500"], ["green"]];
 const beginner = {
@@ -29,8 +29,6 @@ const advance = {
 	color: `${colors[0]}`,
 	borderColor: `${colors[0]}`,
 };
-
-
 
 const responsive = {
 	desktop: {
@@ -57,6 +55,16 @@ const responsive = {
 
 const RenderMentorCard: React.FC = () => {
 	const classes = useStyles();
+	const [courses, setCourses] = useState([]);
+	useEffect(() => {
+		axios
+			.get("http://localhost:8888/.netlify/functions/getCourses")
+			.then((response: any) => {
+				 console.log(response.data.courses);
+				setCourses(response.data.courses);
+			});
+	}, []);
+
 	return (
 		<Carousel
 			additionalTransfrom={0}
@@ -76,9 +84,10 @@ const RenderMentorCard: React.FC = () => {
 			showDots={false}
 			slidesToSlide={1}
 		>
-			{webinarDetails.map((card) => {
-				return (
-					<Card className={classes.card}>
+			{courses &&
+				courses.map((card: any) => {
+					return (
+					<Card className={classes.card} key={card.id}>
 						<>
 							<CardMedia
 								component='img'
@@ -92,7 +101,7 @@ const RenderMentorCard: React.FC = () => {
 								<Box className={classes.CHcontent}>
 									{(() => {
 										switch (card.level) {
-											case "beginner":
+											case "Beginner":
 												return (
 													<Chip
 														size='small'
@@ -103,7 +112,7 @@ const RenderMentorCard: React.FC = () => {
 													/>
 												);
 
-											case "intermediate":
+											case "Intermediate":
 												return (
 													<Chip
 														size='small'
@@ -114,7 +123,7 @@ const RenderMentorCard: React.FC = () => {
 													/>
 												);
 
-											case "advance":
+											case "Advance":
 												return (
 													<Chip
 														size='small'
@@ -147,7 +156,7 @@ const RenderMentorCard: React.FC = () => {
 										component='h2'
 										className={classes.name}
 									>
-										{card.name}
+										{card.course_title}
 									</Typography>
 								</Box>
 							</CardContent>

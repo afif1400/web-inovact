@@ -1,161 +1,50 @@
-import React from 'react';
-import { makeStyles ,createStyles} from '@material-ui/core/styles';
-
-import {Card,CardMedia,CardContent,CardActions,Avatar,Grid,
-  Typography,Box,Button, CardActionArea,Chip,Divider,Container} from '@material-ui/core';
+import React,{useState, useEffect} from 'react';
+import useStyles from './../../styles/PriceCard';
+import {
+    Card,
+    Grid,
+    Typography,
+    Box,
+    CardActionArea,
+    Divider,
+} from '@material-ui/core';
+import { useParams } from "react-router-dom";
 import price from './../../assets/img/rupee.png';
 import time from './../../assets/img/time.png';
 import date from './../../assets/img/date.png';
 import enrolled from './../../assets/img/avatar.png';
 import instructor from './../../assets/img/professor.png';
 import Payment from './../PaymentRoute';
+import {courseDetails} from './../data/data';
+import axios from "axios";
 
-const colors = [
-  ['red'],
-['#ffa500'],
-['green'],
-];
-const beginner={
-  color: `${colors[2]}`,
-  borderColor:`${colors[2]}`
-}
-const intermediate={
-  color: `${colors[1]}`,
-  borderColor:`${colors[1]}`
-}
-const advance={
-  color: `${colors[0]}`,
-  borderColor:`${colors[0]}`
-}
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-  root: {
-    padding:0,
-   
-  },
-  avatar: {
-    display: "inline-block",
-    border: "2px solid white",
-    "&:not(:first-of-type)": {
-      marginLeft: '-10px',
-    }
-  },
-  card:{
-    
-    marginTop:20,
-    marginLeft:20,
-   borderTop:'2px solid #020652',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft:'-20px',
-      width:'300px',
-    },
-  },
-  cardcontent:{
-    padding:'5px',
-    margin:5,
-    marginBottom:0,
-    justifyContent:'left',
-  },
-  name: {
-    margin:3,
-    fontWeight:520,
-    textAlign:'left'
-  },
-  cover: {
-   
-  },
-  carouselWrapper: {
-  
-    '.carousel-container': {
-      width: '100%',
-      maxWidth: '100%',
-      marginRight:'10px',
-     
-      '.react-multi-carousel-item': {
-        transition: 'all 0.25s',
-      },
-      '.react-multi-carousel-item--active:nth-of-type(4n)': {
-        opacity: '0.5',
-        '@media screen and (max-width: 1200px)': {
-          opacity: 1,
-        },
-      },
-    },
-  },
-  CHcontent:{
-    display:'flex',
-    flexDirection:'row',
-    justifyContent:'space-between',
- 
-    margin:0,
-    marginBottom:5,
-  },
-  learn:{
-    display:'block',
-    color:'#020652',
-    padding:'5px',
-    width:'100%',
-    paddingX:'20px',
-      '&:hover':{
-        backgroundColor:'#020652',
-        color:'#FFA500',
-        border:'1px solid transparent',  
-        borderRadius:'5px',
-      }
-    },
-
-      price:{
-      color:'green',
-      fontWeight:550,
-      },
-      priceGrid:{
-          display:'flex',
-          flexDirection:'row',
-          justifyContent:'space-between',
-          paddingTop:'20px',
-      },
-      button:{
-        width:'300px',
-        display:'block',
-       
-      }
-  
-}));
-
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1619 },
-    items: 3,
-    slidesToSlide: 4, 
-  },
-  laptop: {
-    breakpoint: { max: 1619, min: 1024 },
-    items: 3,
-    slidesToSlide: 3, 
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 640 },
-    items: 3,
-    slidesToSlide: 2, 
-  },
-  mobile: {
-    breakpoint: { max: 639, min: 0 },
-    items: 1,
-    slidesToSlide: 1, 
-  },
-};
-
-const CourseCard:React.FC =()=> {
+const PriceCard:React.FC =()=> {
   const classes = useStyles();
+  const [courses,setCourses]=useState([]);
+
+	useEffect(() => {
+		axios
+			.get("http://localhost:8888/.netlify/functions/getCourses")
+			.then((response: any) => {
+				setCourses(response.data.courses);
+			});
+	}, []);
+
+  let { id } = useParams<{ id: string }>();
+	let d=parseInt(id);
   return (
-    <Card className={classes.card} >
+    <div>
+{ courses &&
+      courses.map((card: any) => {
+      if(card.id===d){
+        return (
+    <Card className={classes.card} key={card.id}>
       <CardActionArea style={{padding:'30px'}}>
         <Grid container direction="column">
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={price} width="20" height="20"/>Price</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" className={classes.price}><span>&#8377;</span>50</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" className={classes.price}><span>&#8377;</span>{courseDetails.price}</Typography>
                 </Box>
               </Grid>
               <Divider style={{paddingLeft:'30px'}}/>
@@ -163,7 +52,7 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={instructor} width="20" height="20"/>Instructor</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" >Jane doe</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" >{courseDetails.instructor}</Typography>
                 </Box>
               </Grid>
               <Divider style={{paddingLeft:'30px'}}/>
@@ -171,7 +60,7 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={enrolled} width="20" height="20"/>Enrolled</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" >50</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" >{courseDetails.enrolled}</Typography>
                 </Box>
               </Grid>
               <Divider style={{paddingLeft:'30px'}}/>
@@ -179,7 +68,7 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={time} width="20" height="20"/>Duration</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" >50</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" >{courseDetails.duration}</Typography>
                 </Box>
               </Grid>
               <Divider style={{paddingLeft:'30px'}}/>
@@ -187,7 +76,7 @@ const CourseCard:React.FC =()=> {
               <Grid item xs>
                 <Box className={classes.priceGrid}>
                         <Typography variant="subtitle1"><img src={date} width="20" height="20"/>Date</Typography>
-                        <Typography gutterBottom variant="h6" component="h4" >50</Typography>
+                        <Typography gutterBottom variant="h6" component="h4" >{courseDetails.date}</Typography>
                 </Box>
               </Grid>
              
@@ -200,8 +89,14 @@ const CourseCard:React.FC =()=> {
               
         </Grid>
         </CardActionArea>
-    </Card>
+    </Card>	);
+				}
+				else {
+					return null;
+				}	
+			})}
+    </div>
   );
 }
 
-export default CourseCard;
+export default PriceCard;

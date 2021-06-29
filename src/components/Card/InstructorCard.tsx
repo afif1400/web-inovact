@@ -1,79 +1,17 @@
-import React from 'react';
-import { makeStyles ,createStyles} from '@material-ui/core/styles';
-import {Card,CardContent,
-  Typography,Box,Button, CardActionArea,Container} from '@material-ui/core';
-
-import {instructorDetails} from './../data/data';
+import React, { useState, useEffect } from "react";
+import useStyles from './../../styles/InstructorCard';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  Button,
+  CardActionArea,
+  Container} from '@material-ui/core';
 
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    card:{
-      maxWidth: 200,
-      marginLeft:20,
-      marginTop:30,
-      borderRadius:'15px',
-      marginBottom:'20px',
-      boxShadow: "0 3px 10px -12px rgba(0,0,0,0.9)",
-      [theme.breakpoints.down('sm')]: {
-        marginLeft:10,
-      },
-    },
-  root: {
-   padding:0,
-  
-  },
-  cardcontent:{
-    padding:'5px',
-    margin:5,
-    justifyContent:'left',
-  },
-  name: {
-    marginBottom: 5,
-    marginLeft:10,
-    textAlign:'left'
-  },
-  circle:{
-    position: 'relative',
-    width: '200px',
-    height: '120px',
-    backgroundColor: '#020652',
-   
-  },
-  cover: {
-    width:'120px',
-    height:'120px',
-    position: 'absolute',
-    bottom:" -18px",
-    right: '25%',
-    borderRadius: '50%',
-    borderStyle: 'solid',
-    borderColor:' white',
-    borderWidth: '5px',
-    '@media screen and (max-width: 600px)': {
-      width: '100px',
-      height: '100px',
-      right: '40%',
-    },
-  },
-  CHcontent:{
-    display:'flex',
-    flexDirection:'column',
-    justifyContent:'center',
-    alignItems:'center',
-    marginTop:5,
-    marginBottom:10,
-  },
-  button:{
-    marginTop:5,
-    marginBottom:10,
-      },
-
-}));
-
-
+import axios from "axios";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1619 },
@@ -96,8 +34,19 @@ const responsive = {
     slidesToSlide: 1, 
   },
 };
-const RenderMentorCard:React.FC =()=> {
+const RenderInstructorCard:React.FC =()=> {
   const classes = useStyles();
+  const [instructors,setInstructors]=useState([]);
+
+  useEffect(() => {
+        axios
+        .get("http://localhost:8888/.netlify/functions/getInstructors")
+        .then((response: any) => {
+            setInstructors(response.data.instructors);
+        });
+          
+  }, []);
+
   return (
    <Container className={classes.root}>
  <Carousel
@@ -119,16 +68,17 @@ const RenderMentorCard:React.FC =()=> {
     slidesToSlide={1}
      >
         
-            {instructorDetails.map((card)=> {
+            {instructors &&
+				instructors.map((card: any) => {
               return(
                 <Card className={classes.card}> 
                 <CardActionArea>
               <div className={classes.circle}>
-                <img alt="person" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" className={classes.cover} />
+                <img alt="person" src={card.image} className={classes.cover} />
               </div>
                     <CardContent className={classes.cardcontent}>
                      <Box  className={classes.CHcontent} >
-                          <Typography className={classes.name}>{card.name}</Typography>
+                          <Typography className={classes.name}>{card.instructor_name}</Typography>
                           <Typography className={classes.name} color="textSecondary">{card.mentored} Mentored</Typography>
                           <Button variant="outlined" size="small" color="secondary" className={classes.button}>Know More</Button> 
                      </Box>
@@ -144,4 +94,4 @@ const RenderMentorCard:React.FC =()=> {
   );
 }
 
-export default RenderMentorCard;
+export default RenderInstructorCard;

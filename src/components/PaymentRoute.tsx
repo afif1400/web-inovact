@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import logo from "../assets/img/logo.png";
+import axios from "axios";
 
 function loadScript(src: string) {
 	return new Promise((resolve) => {
@@ -15,14 +16,18 @@ function loadScript(src: string) {
 		document.body.appendChild(script);
 	});
 }
-const button ={
-	width:'300px',
-	display:'block',
-}
+const button = {
+	width: "300px",
+	display: "block",
+};
 
 const __DEV__ = document.domain === "localhost";
 
-const PaymentRoute = () => {
+interface idType {
+	id: number;
+}
+
+const PaymentRoute = ({ id }: idType) => {
 	const [name, setName] = useState("Afif");
 
 	async function displayRazorpay() {
@@ -35,11 +40,10 @@ const PaymentRoute = () => {
 			return;
 		}
 
-		const data = await fetch("http://localhost:8888/.netlify/functions/pay", {
-			method: "POST",
-		}).then((t) => t.json());
-
-		console.log(data);
+		const { data } = await axios.get(
+			`http://localhost:8888/.netlify/functions/pay?courseId=${id}`
+		);
+		// console.log(data);
 
 		const options = {
 			key: __DEV__ ? "rzp_test_7AvAkPKH4CvzCV" : process.env.RAZORPAY_KEY,
@@ -68,7 +72,15 @@ const PaymentRoute = () => {
 
 	return (
 		<div>
-				<Button variant="contained" size="large" onClick={() => displayRazorpay()} color="primary" style={button}>Register Now</Button>
+			<Button
+				variant='contained'
+				size='large'
+				onClick={() => displayRazorpay()}
+				color='primary'
+				style={button}
+			>
+				Register Now
+			</Button>
 		</div>
 	);
 };

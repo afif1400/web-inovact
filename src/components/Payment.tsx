@@ -31,11 +31,9 @@ const PaymentRoute = () => {
 			return;
 		}
 
-		const data = await fetch("http://localhost:8888/.netlify/functions/pay", {
-			method: "POST",
-		}).then((t) => t.json());
-
-		console.log(data);
+		const data = await fetch("http://localhost:8888/.netlify/function/pay", {
+			method: "GET",
+		}).then((res) => res.json());
 
 		const options = {
 			key: __DEV__ ? "rzp_test_7AvAkPKH4CvzCV" : process.env.RAZORPAY_KEY,
@@ -64,7 +62,14 @@ const PaymentRoute = () => {
 
 	return (
 		<div>
-			<Button variant="contained" size="medium" onClick={() => displayRazorpay()} color="primary">Register Now</Button>
+			<Button
+				variant='contained'
+				size='medium'
+				onClick={() => displayRazorpay()}
+				color='primary'
+			>
+				Register Now
+			</Button>
 		</div>
 	);
 };

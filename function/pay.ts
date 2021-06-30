@@ -3,6 +3,7 @@ import Razorpay from "razorpay";
 import shortid from "shortid";
 
 const handler: Handler = async (event: HandlerEvent): Promise<any> => {
+	
 	let razorpay = new Razorpay({
 		key_id: "rzp_test_7AvAkPKH4CvzCV",
 		key_secret: "fIkvWqyfV3i8z4AoUcFPZvqg",

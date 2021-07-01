@@ -39,7 +39,7 @@ const PriceCard: React.FC = () => {
 					if (card.id === d) {
 						return (
 							<Card className={classes.card} key={card.id}>
-								<CardActionArea style={{ padding: "30px" }}>
+								<Box style={{ padding: "30px" }}>
 									<Grid container direction='column'>
 										<Grid item xs>
 											<Box className={classes.priceGrid}>
@@ -120,7 +120,7 @@ const PriceCard: React.FC = () => {
 											</Box>
 										</Grid>
 									</Grid>
-								</CardActionArea>
+								</Box>
 							</Card>
 						);
 					} else {

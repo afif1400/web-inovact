@@ -1,4 +1,4 @@
-import { courseDetails } from "./../src/components/data/data";
+
 import { Handler, HandlerEvent } from "@netlify/functions";
 const { query } = require("./utils/hasura");
 
@@ -33,7 +33,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
 	return {
 		statusCode: 200,
-		body: JSON.stringify({ courses: response.data.courseDetails_by_pk }),
+		body: JSON.stringify({ course: response.data.courseDetails_by_pk }),
 	};
 };
 

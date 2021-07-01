@@ -56,6 +56,20 @@ function TabPanel(props: TabPanelProps) {
 		</div>
 	);
 }
+interface CourseType{
+	catergory:string;
+	course_title:string;
+	date:string;
+	description:string;
+	duration:string;
+	id:number;
+	image:string;
+	instructor_id:string;
+	level:string;
+	outcome:string;
+	price:number;
+	time:string;
+}
 
 function a11yProps(index: any) {
 	return {
@@ -68,15 +82,17 @@ const CourseInfo = () => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [value, setValue] = React.useState(0);
-	const [courses, setCourses] = useState([]);
+	//@ts-ignore
+	const [course, setCourse] = useState<CourseType>({});
 	const [reviews, setReviews] = useState([]);
-
+	let { id } = useParams<{ id: string }>();
+	let d = parseInt(id);
 	useEffect(() => {
 		axios
-			.get("http://localhost:8888/.netlify/functions/getCourses")
+			.get(`http://localhost:8888/.netlify/functions/getCourse?courseId=${d}`
+			)
 			.then((response: any) => {
-				// console.log(response.data.courses);
-				setCourses(response.data.courses);
+				setCourse(response.data.course);
 			});
 
 		axios
@@ -94,15 +110,9 @@ const CourseInfo = () => {
 		setValue(index);
 	};
 
-	let { id } = useParams<{ id: string }>();
-	let d = parseInt(id);
+
 	return (
-		<div>
-			{courses &&
-				courses.map((card: any) => {
-					if (card.id === d) {
-						return (
-							<Container>
+					<Container>
 								<Grid
 									container
 									direction='row'
@@ -112,7 +122,7 @@ const CourseInfo = () => {
 									<Grid item xs={12} md={8}>
 										<Box>
 											<Typography variant='h4' color='primary'>
-												{card.course_title}
+												{course.course_title}
 											</Typography>
 											<Box>
 												<Grid container spacing={2} className={classes.grid1}>
@@ -135,7 +145,7 @@ const CourseInfo = () => {
 																Catergory
 															</Typography>
 															<Typography gutterBottom variant='body2'>
-																{card.category}
+															something
 															</Typography>
 														</Grid>
 														<Grid item xs style={{ paddingLeft: "40px" }}>
@@ -144,7 +154,7 @@ const CourseInfo = () => {
 															</Typography>
 															<Typography gutterBottom variant='body2'>
 																<span>&#8377;</span>
-																{card.price}
+																{course.price}
 															</Typography>
 														</Grid>
 														<Grid item xs>
@@ -154,7 +164,7 @@ const CourseInfo = () => {
 												</Grid>
 												<Box style={{ marginTop: "20px" }}>
 													<img
-														src={card.image}
+														src={course.image}
 														className={classes.mainImg}
 														alt='detail'
 													/>
@@ -194,7 +204,7 @@ const CourseInfo = () => {
 													<Typography variant='h6' color='primary'>
 														Overview
 													</Typography>
-													<Typography paragraph>{card.description}</Typography>
+													<Typography paragraph>{course.description}</Typography>
 													<Typography variant='h6' color='primary'>
 														What will you learn?
 													</Typography>
@@ -208,7 +218,7 @@ const CourseInfo = () => {
 																alt='outcome'
 															/>
 														</ListItemIcon>
-														<ListItemText primary={card.outcome} />
+														<ListItemText primary={course.outcome} />
 													</ListItem>
 												</Box>
 											</TabPanel>
@@ -384,7 +394,7 @@ const CourseInfo = () => {
 																variant='h6'
 																style={{ fontSize: "18px" }}
 															>
-																{card.course_title}
+																{course.course_title}
 															</Typography>
 														</Grid>
 													</Grid>
@@ -392,7 +402,7 @@ const CourseInfo = () => {
 													<Grid item>
 														<Typography variant='subtitle1'>
 															<span>&#8377;</span>
-															{card.price}
+															{course.price}
 														</Typography>
 													</Grid>
 												</Grid>
@@ -446,12 +456,7 @@ const CourseInfo = () => {
 									</Grid>
 								</Grid>
 							</Container>
-						);
-					} else {
-						return null;
-					}
-				})}
-		</div>
+						
 	);
 };
 export default CourseInfo;

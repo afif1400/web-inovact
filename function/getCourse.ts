@@ -1,24 +1,30 @@
+
 import { Handler, HandlerEvent } from "@netlify/functions";
 const { query } = require("./utils/hasura");
 
 const handler: Handler = async (event: HandlerEvent) => {
-	
+	const { courseId } = event.queryStringParameters;
+
+	console.log(event.queryStringParameters);
+
 	const response = await query({
-		query: `query getCourse {
-            courseDetails_by_pk(id: 1) {
-              catergory
-              course_title
-              date
-              description
-              duration
-              instructor_id
-              level
-              outcome
-              price
-              time
-            }
-          }
-          `,
+		query: `query MyQuery {
+      courseDetails_by_pk(id: ${courseId}) {
+        catergory
+        course_title
+        date
+        description
+        duration
+        id
+        image
+        instructor_id
+        level
+        outcome
+        price
+        time
+      }
+    }
+    `,
 	});
 
 	if (response.errors) {
@@ -27,7 +33,7 @@ const handler: Handler = async (event: HandlerEvent) => {
 
 	return {
 		statusCode: 200,
-		body: JSON.stringify({ course: response.data.courseDetails }),
+		body: JSON.stringify({ course: response.data.courseDetails_by_pk }),
 	};
 };
 
